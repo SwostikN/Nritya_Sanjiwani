@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nritya Sanjiwani
 
-## Getting Started
+Next.js port of `nritya-sanjiwani-v2.html`. The public site is a
+verbatim port — the stylesheet is the original `<style>` block
+unchanged, and every page renders an identical DOM (verified by
+diffing the rendered class-attribute sequence and text stream of all
+ten pages against the original file).
 
-First, run the development server:
+## What changed from the single-file version
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Real routes** instead of the `#/story` hash router, so each page
+  carries its own `<title>` and description (PRD §15).
+  `data-go="story"` still works everywhere — `components/NavRoot.tsx`
+  intercepts it and pushes the route, which is why the markup could
+  stay byte-identical.
+- **The three forms actually submit.** They POST to `/api/partner`,
+  `/api/apply` and `/api/newsletter`, which validate server-side,
+  drop honeypot hits, keep only the fields listed in PRD §11, and
+  persist through `lib/submissions.ts`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    npm install
+    npm run dev
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Where the content lives
 
-## Learn More
+`lib/content.ts` — ported from the constants at the bottom of the v2
+HTML. Every export here becomes a database table when the admin panel
+lands; the components read the same shapes either way.
 
-To learn more about Next.js, take a look at the following resources:
+## Where submissions go
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`lib/submissions.ts` is the single write path. With no Supabase
+environment set it appends to `.submissions/*.jsonl` so the flow is
+testable locally. Set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`
+(see `.env.example`) and it writes to Postgres instead — nothing above
+that file changes.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Not done yet
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Supabase schema, admin panel, image uploads, auth and roles
+- Privacy policy page + a retention rule for stored applications
+- Real photography, real contact details, real Looking Back content
