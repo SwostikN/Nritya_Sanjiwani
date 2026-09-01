@@ -97,12 +97,11 @@ and **only delivers to the address that owns the Resend account**.
 Anything else is refused with a 403 that the visitor never sees — the
 submission saves fine and the alert silently does not arrive.
 
-This account is owned by `hazardoussn@gmail.com`, so that is the only
-working recipient today, and it is what `NOTIFY_EMAIL` is set to.
-Adding `rosikadangi7@gmail.com` now would fail exactly this way.
+The Resend account is owned by `rosikadangi7@gmail.com`, so that is the
+only working recipient today, and it is what `NOTIFY_EMAIL` is set to.
+Adding a second address now would fail exactly this way.
 
-To alert anyone else — which you will want, since the person running
-the site is not the person who owns the Resend account:
+To alert more than one person:
 
 1. Get a domain (also needed for hosting).
 2. Resend → Domains → add it, follow the DNS records.
