@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { saveSubmission, type Kind } from "./submissions";
+import { notifySubmission } from "./notify";
 
 /* Shared handler for the three public forms. Server-side validation
    mirrors the client rules (PRD §12: validate on both sides), the
@@ -35,6 +36,11 @@ export function makeHandler(kind: Kind, allowed: string[], required: string[]) {
 
     try {
       const id = await saveSubmission(kind, clean);
+      /* The submission is already safe in the database. Alerting is
+         best-effort from here — awaited so serverless does not kill it
+         mid-flight, but never allowed to turn a saved submission into
+         an error the visitor sees. */
+      await notifySubmission(kind).catch(() => {});
       return NextResponse.json({ ok: true, id });
     } catch (err) {
       console.error(`[${kind}] save failed`, err);
