@@ -40,7 +40,7 @@ export function makeHandler(kind: Kind, allowed: string[], required: string[]) {
          best-effort from here — awaited so serverless does not kill it
          mid-flight, but never allowed to turn a saved submission into
          an error the visitor sees. */
-      await notifySubmission(kind).catch(() => {});
+      await notifySubmission(kind, clean).catch(() => {});
       return NextResponse.json({ ok: true, id });
     } catch (err) {
       console.error(`[${kind}] save failed`, err);
