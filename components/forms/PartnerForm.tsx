@@ -1,9 +1,8 @@
 "use client";
 import { useState } from "react";
-import { INTERESTS } from "@/lib/content";
 import { setErr, isEmail } from "@/lib/form";
 
-export default function PartnerForm() {
+export default function PartnerForm({ interests }: { interests: string[] }) {
   const [sent, setSent] = useState(false);
   const [busy, setBusy] = useState(false);
   const [failed, setFailed] = useState("");
@@ -57,8 +56,8 @@ export default function PartnerForm() {
           <label className="field"><span>Phone</span><input type="text" name="phone" autoComplete="tel" /><span className="err"></span></label>
         </div>
         <label className="field"><span>I am interested in</span>
-          <select name="interest" defaultValue={INTERESTS[0]}>
-            {INTERESTS.map((i) => <option key={i}>{i}</option>)}
+          <select name="interest" defaultValue={interests[0]}>
+            {interests.map((i) => <option key={i}>{i}</option>)}
           </select>
         </label>
         <label className="field"><span>Message</span><textarea name="message" rows={4}></textarea></label>

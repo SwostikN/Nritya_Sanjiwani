@@ -37,8 +37,19 @@ testable locally. Set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`
 (see `.env.example`) and it writes to Postgres instead — nothing above
 that file changes.
 
+## The admin
+
+`/admin` — sign-in, content editing, image uploads with required alt
+text, a submissions inbox with CSV export, and two roles. See
+`SETUP.md` for the two steps needed to switch it on.
+
+Content is read by `lib/content-db.ts`, which falls back to
+`lib/content.ts` whenever Supabase is unconfigured or a collection is
+empty. The site therefore renders correctly before the database exists,
+during the migration, and after it.
+
 ## Not done yet
 
-- Supabase schema, admin panel, image uploads, auth and roles
-- Privacy policy page + a retention rule for stored applications
+- Email alerts on new submissions
+- Privacy policy page + the job that enforces `applications.delete_after`
 - Real photography, real contact details, real Looking Back content

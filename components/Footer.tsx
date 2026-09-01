@@ -1,6 +1,7 @@
-import { SITE, FOOTER_NAV } from "@/lib/content";
+import { getContent } from "@/lib/content-db";
 
-export default function Footer() {
+export default async function Footer() {
+  const { SITE, FOOTER_NAV } = await getContent();
   const contact = [SITE.email, SITE.phone].filter(Boolean);
   return (
     <footer className="ft">

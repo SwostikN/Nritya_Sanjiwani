@@ -7,6 +7,7 @@
 
 /* ---------- shapes ---------- */
 export type NavItem = [string, string];
+export interface SiteInfo { email:string; phone:string; minAge:string; crisis:string; social:Record<string,string> }
 export interface MethodItem   { n:string; deva:string; title:string; img:string; alt:string; body:string }
 export interface StatItem     { f:string; l:string }
 export interface PhaseItem    { tag:string; title:string; deva:string; img:string; alt:string; body:string }
@@ -26,7 +27,7 @@ export interface LearnedItem  { n:string; title:string; body:string }
 export interface ReflectionYear{ year:string; deva?:string; title?:string; summary?:string; stats?:StatItem[]; events?:TimelineEvent[]; learned?:LearnedItem[] }
 export interface ReflectionData{ lede:string; note:string; years:ReflectionYear[] }
 
-export const SITE = {
+export const SITE: SiteInfo = {
   email:    "",              // e.g. "hello@nrityasanjiwani.org"
   phone:    "",              // e.g. "+977 ..."
   minAge:   "",              // e.g. "16"
