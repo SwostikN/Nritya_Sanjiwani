@@ -9,7 +9,9 @@
    so it will not duplicate rows. It does NOT touch submissions,
    media or users.
    ============================================================ */
-import "dotenv/config";
+import { config } from "dotenv";
+config({ path: ".env.local" });
+config({ path: ".env" });
 import { createClient } from "@supabase/supabase-js";
 import * as C from "../lib/content";
 
