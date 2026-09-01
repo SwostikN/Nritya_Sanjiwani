@@ -1,0 +1,108 @@
+/* ============================================================
+   ADMIN — a working tool, not a showpiece. It borrows the site's
+   palette so it feels like the same product, but drops the
+   editorial type and the animation: nothing here should move
+   while somebody is trying to type into it.
+   ============================================================ */
+.adm{--sidebar:248px;--adm-line:rgba(36,23,16,.14);--adm-bg:#FBF6EC;--adm-panel:#fff;
+     min-height:100vh;background:var(--adm-bg);color:var(--ink);
+     font-family:var(--sans);font-size:14px;line-height:1.55}
+.adm *{box-sizing:border-box}
+.adm__shell{display:grid;grid-template-columns:var(--sidebar) 1fr;min-height:100vh}
+
+.adm__side{border-right:1px solid var(--adm-line);background:var(--surface);
+           padding:22px 0;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.adm__brand{padding:0 20px 18px;border-bottom:1px solid var(--adm-line);margin-bottom:12px}
+.adm__brand b{font-family:var(--display);font-size:1.15rem;font-weight:600;display:block;line-height:1.2}
+.adm__brand span{font-size:.7rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.adm__grp{padding:16px 20px 6px;font-size:.62rem;font-weight:700;letter-spacing:.17em;
+          text-transform:uppercase;color:var(--muted)}
+.adm__nav{display:block;padding:.5em 20px;color:var(--body);text-decoration:none;border-left:2px solid transparent}
+.adm__nav:hover{background:var(--surface-2);color:var(--ink)}
+.adm__nav.is-on{border-left-color:var(--accent);color:var(--ink);font-weight:600;background:var(--surface-2)}
+.adm__nav i{font-style:normal;float:right;color:var(--muted);font-size:.78rem;font-weight:400}
+
+.adm__main{padding:30px clamp(20px,3vw,44px) 80px;max-width:1100px}
+.adm__head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;
+           padding-bottom:18px;border-bottom:1px solid var(--adm-line);margin-bottom:26px;flex-wrap:wrap}
+.adm__h1{font-family:var(--display);font-size:1.7rem;font-weight:600;margin:0 0 .2em;line-height:1.15}
+.adm__sub{color:var(--muted);font-size:.86rem;margin:0}
+.adm__where{display:inline-block;margin-top:.5em;font-size:.68rem;font-weight:700;letter-spacing:.13em;
+            text-transform:uppercase;color:var(--accent-2)}
+
+.adm__card{background:var(--adm-panel);border:1px solid var(--adm-line);border-radius:10px;padding:18px 20px;margin-bottom:14px}
+.adm__row{display:flex;align-items:center;gap:14px}
+.adm__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+
+/* forms */
+.adm label{display:block;margin-bottom:14px}
+.adm label>span:first-child{display:block;font-size:.68rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:.45em}
+.adm input[type=text],.adm input[type=email],.adm input[type=password],.adm input[type=number],
+.adm textarea,.adm select{
+  width:100%;padding:.62em .8em;border:1px solid var(--adm-line);border-radius:7px;
+  background:#fff;font:inherit;color:var(--ink);outline:0}
+.adm input:focus,.adm textarea:focus,.adm select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,120,30,.14)}
+.adm textarea{resize:vertical;line-height:1.55}
+.adm .help{display:block;margin-top:.4em;font-size:.76rem;color:var(--muted);font-weight:400;
+  letter-spacing:0;text-transform:none}
+.adm .req{color:var(--accent-2)}
+.adm .chk{display:flex;align-items:flex-start;gap:.6em}
+.adm .chk input{width:auto;margin-top:.25em}
+.adm .chk>span:first-child{all:unset}
+
+/* buttons */
+.adm .b{display:inline-flex;align-items:center;gap:.5em;padding:.6em 1.1em;border-radius:999px;
+  border:1px solid var(--ink);background:var(--ink);color:var(--ground);cursor:pointer;
+  font:inherit;font-weight:600;font-size:.82rem;text-decoration:none;transition:opacity .2s}
+.adm .b:hover{opacity:.86}
+.adm .b:disabled{opacity:.45;cursor:default}
+.adm .b--ghost{background:transparent;color:var(--ink);border-color:var(--line-strong)}
+.adm .b--danger{background:var(--accent-2);border-color:var(--accent-2)}
+.adm .b--sm{padding:.4em .8em;font-size:.75rem}
+
+/* tables */
+.adm table{width:100%;border-collapse:collapse;font-size:.86rem}
+.adm th{text-align:left;font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);padding:0 12px 10px;border-bottom:1px solid var(--adm-line)}
+.adm td{padding:12px;border-bottom:1px solid var(--adm-line);vertical-align:top}
+.adm tr:hover td{background:var(--surface)}
+.adm__wrapx{overflow-x:auto}
+
+/* list rows with drag handles */
+.adm__item{display:grid;grid-template-columns:26px 1fr auto;gap:12px;align-items:center;
+  background:#fff;border:1px solid var(--adm-line);border-radius:9px;padding:11px 14px;margin-bottom:8px}
+.adm__item.is-hidden{opacity:.55;background:var(--surface)}
+.adm__handle{cursor:grab;color:var(--muted);text-align:center;user-select:none;font-size:1.05rem}
+.adm__title{font-weight:600}
+.adm__meta{font-size:.76rem;color:var(--muted);margin-top:.15em}
+
+.adm__thumb{width:46px;height:46px;border-radius:6px;object-fit:cover;background:var(--surface-2);flex:none}
+
+.adm__tag{display:inline-block;padding:.22em .6em;border-radius:999px;font-size:.66rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase}
+.adm__tag--new{background:var(--accent);color:#fff}
+.adm__tag--ok{background:var(--surface-2);color:var(--body)}
+
+.adm__note{border:1px dashed var(--line-strong);border-radius:9px;padding:14px 16px;
+  color:var(--body);font-size:.86rem;background:var(--surface)}
+.adm__note b{display:block;margin-bottom:.35em;font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent-2)}
+.adm__err{color:var(--accent-2);font-size:.84rem;margin-top:.6em}
+.adm__ok{color:#2c6e49;font-size:.84rem}
+
+.adm__empty{text-align:center;padding:44px 20px;color:var(--muted)}
+
+/* login */
+.adm__login{min-height:100vh;display:grid;place-items:center;padding:24px;background:var(--adm-bg)}
+.adm__loginbox{width:100%;max-width:390px;background:#fff;border:1px solid var(--adm-line);
+  border-radius:12px;padding:32px}
+
+@media(max-width:860px){
+  .adm__shell{grid-template-columns:1fr}
+  .adm__side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;gap:2px;padding:14px}
+  .adm__brand{width:100%;padding-bottom:12px}
+  .adm__grp{display:none}
+  .adm__nav{border-left:0;border-bottom:2px solid transparent;padding:.45em .7em}
+  .adm__nav.is-on{border-left:0;border-bottom-color:var(--accent)}
+}

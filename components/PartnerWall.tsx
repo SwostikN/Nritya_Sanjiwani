@@ -1,4 +1,4 @@
-import { PARTNERS, type PartnerItem } from "@/lib/content";
+import type { PartnerItem, PartnersData } from "@/lib/content";
 
 function Plogo({ p }: { p: PartnerItem }) {
   const inner = (
@@ -24,10 +24,10 @@ function Popen({ text }: { text: string }) {
 }
 
 /* the grouped wall — Partner page and Looking Back */
-export function PartnerWallFull() {
+export function PartnerWallFull({ partners }: { partners: PartnersData }) {
   return (
     <>
-      {PARTNERS.groups.map((g) => (
+      {partners.groups.map((g) => (
         <div className="pgroup" key={g.label}>
           <div className="pgroup__h"><b>{g.label}</b><i></i></div>
           {g.items.length
@@ -40,8 +40,8 @@ export function PartnerWallFull() {
 }
 
 /* the quiet home strip — every named partner, no group labels */
-export function PartnerStrip() {
-  const all = PARTNERS.groups.reduce<PartnerItem[]>((a, g) => a.concat(g.items), []);
+export function PartnerStrip({ partners }: { partners: PartnersData }) {
+  const all = partners.groups.reduce<PartnerItem[]>((a, g) => a.concat(g.items), []);
   return all.length
     ? <div className="plogos">{all.map((p, i) => <Plogo key={i} p={p} />)}</div>
     : <Popen text="We are building this list — if your organisation belongs on it," />;

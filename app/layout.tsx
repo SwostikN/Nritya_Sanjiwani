@@ -1,10 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import NavRoot from "@/components/NavRoot";
-import Reveal from "@/components/Reveal";
-import NewsletterForm from "@/components/forms/NewsletterForm";
 
 export const metadata: Metadata = {
   title: "Nritya Sanjiwani — Healing Through Kathak",
@@ -12,6 +7,8 @@ export const metadata: Metadata = {
     "A community-based initiative using Kathak, movement, art and storytelling to create spaces for emotional expression and well-being in the Kathmandu Valley.",
 };
 
+/* Deliberately bare: the public site's header and footer live in
+   (site)/layout.tsx so the admin can sit beside it without them. */
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -24,29 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body>
-        <NavRoot />
-        <Reveal />
-        <Header />
-        <main id="main">{children}</main>
-
-        {/* ==================== NEWSLETTER ==================== */}
-        <section className="news">
-          <div className="wrap news__in">
-            <div className="rv">
-              <h2 className="h2" style={{ maxWidth: "14ch" }}>Follow the journey.</h2>
-              <p className="lede" style={{ marginTop: "1em", maxWidth: "48ch" }}>
-                Occasional notes from the program — no more than one a month, and never a fundraising blast.
-              </p>
-            </div>
-            <div className="rv" style={{ "--d": "120ms" } as React.CSSProperties} id="newsWrap">
-              <NewsletterForm />
-            </div>
-          </div>
-        </section>
-
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
