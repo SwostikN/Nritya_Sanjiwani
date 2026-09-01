@@ -90,10 +90,24 @@ matters more than it looks.
 4. Restart the server. The admin overview will say *"Alerts are on"*
    instead of *"Alerts are off"*.
 
-Until you verify your own domain with Resend, alerts are sent from
-`onboarding@resend.dev`, which only delivers to the address that owns
-the Resend account. To send to anyone else, add your domain under
-Resend → Domains and set `NOTIFY_FROM` to an address on it.
+## The free-tier restriction (bites immediately)
+
+Until a domain is verified, Resend sends from `onboarding@resend.dev`
+and **only delivers to the address that owns the Resend account**.
+Anything else is refused with a 403 that the visitor never sees — the
+submission saves fine and the alert silently does not arrive.
+
+This account is owned by `hazardoussn@gmail.com`, so that is the only
+working recipient today, and it is what `NOTIFY_EMAIL` is set to.
+Adding `rosikadangi7@gmail.com` now would fail exactly this way.
+
+To alert anyone else — which you will want, since the person running
+the site is not the person who owns the Resend account:
+
+1. Get a domain (also needed for hosting).
+2. Resend → Domains → add it, follow the DNS records.
+3. Set `NOTIFY_FROM=Nritya Sanjiwani <hello@yourdomain.org>`.
+4. Put whoever should be told in `NOTIFY_EMAIL`, comma-separated.
 
 ## What the alert says
 
