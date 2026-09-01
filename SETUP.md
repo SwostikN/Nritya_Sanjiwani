@@ -110,14 +110,21 @@ To alert more than one person:
 
 ## What the alert says
 
-It says *what* arrived and links to the admin. It deliberately does
-**not** include the applicant's name, age, contact details or answers.
+The full submission, laid out as a table, so it can be read and replied
+to from a phone. **Reply** goes to the person who wrote in — their
+address is set as the reply-to. Applications that did not tick the
+photo/story consent box carry a visible warning, because that is the
+detail easiest to miss and most costly to get wrong.
 
-Those were given to a well-being programme under a consent checkbox
-covering the review of an application — not copying them into several
-inboxes, where they get forwarded, synced to phones, and kept long
-after the row here has been deleted. The alert tells you to go and
-look; the data stays in one place.
+This is a trade. Email spreads: it is forwarded, synced to devices,
+backed up, and kept long after the database row has passed its
+`delete_after` date, which weakens the retention promise the consent
+checkbox implies. If that matters more than phone convenience, set
+
+    NOTIFY_INCLUDE_DETAILS=false
+
+and alerts go back to "something arrived" plus a link, with the data
+staying in one place.
 
 ## If email breaks
 
