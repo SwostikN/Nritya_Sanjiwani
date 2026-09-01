@@ -20,6 +20,11 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
 
   const counts = { applications: apps.count ?? 0, enquiries: enq.count ?? 0 };
 
+  /* whether submission alerts are actually switched on — an admin should never
+     have to guess whether anyone is being told about new applications */
+  const alertTo = (process.env.NOTIFY_EMAIL || "").split(",").map((x) => x.trim()).filter(Boolean).join(", ");
+  const alertsOn = Boolean(process.env.RESEND_API_KEY && alertTo);
+
   return (
     <div className="adm__shell">
       <Sidebar role={staff.role} name={staff.name} counts={counts} />
@@ -34,6 +39,19 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
             </p>
           </div>
         </div>
+
+        {!alertsOn ? (
+          <div className="adm__note" style={{ marginBottom: 20 }}>
+            <b>Alerts are off</b>
+            Nobody is being emailed when an application or enquiry arrives, so these pages have to be
+            checked by hand. The site tells applicants they will hear back within two weeks.
+            Set <code>RESEND_API_KEY</code> and <code>NOTIFY_EMAIL</code> in <code>.env.local</code> to switch them on.
+          </div>
+        ) : (
+          <p className="help" style={{ marginBottom: 20 }}>
+            Alerts are on — new submissions are emailed to {alertTo}.
+          </p>
+        )}
 
         {e === "forbidden" ? (
           <div className="adm__note" style={{ marginBottom: 20 }}>
