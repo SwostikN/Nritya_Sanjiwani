@@ -16,14 +16,12 @@ export default async function Home() {
       <section className="hero">
         <div className="hero__deva" aria-hidden="true">नृत्य</div>
         <div className="wrap hero__grid">
-          <div>
-            <h1 className="h-display rv" style={{ ...d(80), marginTop: ".08em" }}>
-              <span className="mask"><span className="deva" style={{ fontSize: "min(clamp(1.7rem,5.45vw,5rem),10.4svh)", lineHeight: 1.3, color: "var(--accent-2)", display: "block", marginBottom: ".02em" }}>नृत्य संजीवनी</span></span>
-              <span className="mask"><span>Healing</span></span>
-              <span className="mask"><span style={{ fontStyle: "italic", fontWeight: 300, color: "var(--accent-2)" }}>through</span></span>
-              <span className="mask"><span>Kathak</span></span>
+          <div className="hero__copy">
+            <h1 className="h-display hero__title rv" style={{ ...d(80), marginTop: ".08em" }}>
+              <span className="mask"><span className="deva">नृत्य संजीवनी</span></span>
+              <span className="mask"><span>Healing <span className="thru">through</span> Kathak</span></span>
             </h1>
-            <div className="rule rule--gold rv" style={{ ...d(340), margin: ".6rem 0 .55rem", maxWidth: 120 }}></div>
+            <div className="rule rule--gold rv" style={{ ...d(340), margin: ".85rem 0 .7rem", maxWidth: 120 }}></div>
             <p className="lede rv" style={{ ...d(400), maxWidth: "60ch" }}>
               A community-based initiative using dance, movement, art and storytelling
               to create spaces for emotional expression and well-being.
