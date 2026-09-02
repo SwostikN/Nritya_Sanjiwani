@@ -81,11 +81,10 @@ p:last-child{margin-bottom:0}
 .deva{font-family:var(--deva);font-weight:400}
 
 .eyebrow{
-  display:inline-flex;align-items:center;gap:.72em;
+  display:inline-flex;align-items:center;
   font-size:.688rem;font-weight:600;letter-spacing:.19em;text-transform:uppercase;
   color:var(--accent-2);
 }
-.eyebrow::before{content:'';width:26px;height:1px;background:var(--accent);flex:none}
 .eyebrow.deva{font-family:var(--deva);letter-spacing:.06em;text-transform:none;font-size:.95rem;font-weight:400}
 
 /* ---------- buttons ---------- */
@@ -337,7 +336,6 @@ p:last-child{margin-bottom:0}
 .sec--deep{background:var(--deep);color:var(--ground)}
 .sec--deep .lede,.sec--deep .body-lg,.sec--deep p{color:rgba(251,246,236,.78)}
 .sec--deep .eyebrow{color:var(--accent-soft)}
-.sec--deep .eyebrow::before{background:var(--accent-soft)}
 .sec--deep .rule{background:rgba(251,246,236,.24)}
 .sec__head{max-width:760px;margin-bottom:clamp(30px,3.4vw,50px)}
 .sec__head .h2{margin-top:.5em}
