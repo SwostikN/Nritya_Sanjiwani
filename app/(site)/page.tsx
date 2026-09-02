@@ -278,25 +278,13 @@ export default async function Home() {
       <section className="sec sec--surface sec--tight">
         <div className="wrap">
           <div className="rv" style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", justifyContent: "space-between", gap: "1.2em", marginBottom: "clamp(20px,2.4vw,30px)" }}>
-            <span className="eyebrow">In partnership with</span>
+            <span className="eyebrow eyebrow--label">In partnership with</span>
             <span className="tlink" data-go="partner">Walk with us <span className="arw">→</span></span>
           </div>
           <div className="rv" style={d(100)} id="partnerWallHome"><PartnerStrip partners={PARTNERS} /></div>
         </div>
       </section>
       ) : null}
-
-      {/* closing */}
-      <section className="sec sec--deep" style={{ textAlign: "center" }}>
-        <div className="wrap narrow">
-          <p className="pull rv">There is more than one way to tell a story.</p>
-          <p className="pull rv" style={{ ...d(120), marginTop: ".2em" }}><em>Sometimes, we dance it.</em></p>
-          <div className="rv" style={{ ...d(220), display: "flex", flexWrap: "wrap", gap: 14, justifyContent: "center", marginTop: "2.8rem" }}>
-            <button className="btn btn--light" data-go="partner">Partner With Us</button>
-            <button className="btn btn--light" data-go="apply">Join the Journey</button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
