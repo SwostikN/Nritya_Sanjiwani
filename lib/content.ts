@@ -60,11 +60,11 @@ export const IMG = {
 
 /* ---------- content ---------- */
 export const NAV: NavItem[] = [
-  ["Our Story","story"],["Looking Back","reflection"],["The Program","program"],["Gallery","gallery"],
+  ["Our Story","story"],["Our Journey","reflection"],["The Program","program"],["Gallery","gallery"],
   ["Journal","journal"],["Partner","partner"],["Contact","contact"]
 ];
 export const FOOTER_NAV: NavItem[] = [
-  ["Our Story","story"],["Looking Back","reflection"],["The Program","program"],["Gallery","gallery"],["Journal","journal"],
+  ["Our Story","story"],["Our Journey","reflection"],["The Program","program"],["Gallery","gallery"],["Journal","journal"],
   ["Partner With Us","partner"],["Support","support"],["Apply","apply"],["Contact","contact"]
 ];
 export const MARQUEE: NavItem[] = [
@@ -165,7 +165,7 @@ export const SUPPORT_MODELS: SupportModel[] = [
 
 
 /* =============================================================
-   LOOKING BACK — the record of what has already happened.
+   OUR JOURNEY — the record of what has already happened.
    Newest year first; add a new object to `years` each year.
 
    TO FILL IN: replace every "Month 2026", every place name and

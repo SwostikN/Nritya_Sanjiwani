@@ -52,4 +52,4 @@ during the migration, and after it.
 
 - Email alerts on new submissions
 - Privacy policy page + the job that enforces `applications.delete_after`
-- Real photography, real contact details, real Looking Back content
+- Real photography, real contact details, real Our Journey content

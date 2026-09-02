@@ -6,7 +6,7 @@ import { getContent } from "@/lib/content-db";
 import { d } from "@/lib/util";
 
 export const metadata: Metadata = {
-  title: "Looking Back · Nritya Sanjiwani",
+  title: "Our Journey · Nritya Sanjiwani",
   description: "The record of the sessions, workshops and performances that came before the 2026–27 community program.",
 };
 
@@ -16,8 +16,8 @@ export default async function Reflection() {
     <div className="page is-on" data-page="reflection">
       <section className="sec sec--tight">
         <div className="wrap narrow">
-          <div className="rv"><span className="eyebrow deva">फर्केर हेर्दा</span></div>
-          <h1 className="h1 rv" style={{ ...d(80), margin: ".4em 0 .5em" }}>Looking Back</h1>
+          <div className="rv"><span className="eyebrow deva">हाम्रो यात्रा</span></div>
+          <h1 className="h1 rv" style={{ ...d(80), margin: ".4em 0 .5em" }}>Our Journey</h1>
           <p className="lede rv" style={d(140)} id="backLede">{REFLECTION.lede}</p>
           <div className="rv" style={{ ...d(200), marginTop: "clamp(26px,3vw,40px)" }}>
             <div className="note"><b>On what appears here</b><span id="backNote">{REFLECTION.note}</span></div>

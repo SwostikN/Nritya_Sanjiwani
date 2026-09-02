@@ -421,7 +421,7 @@ p:last-child{margin-bottom:0}
 .chap__n{font-family:var(--display);font-size:clamp(2.4rem,calc(4vw * var(--ui-scale)),3.4rem);line-height:.9;color:var(--accent);opacity:.42}
 .chap h2{margin-bottom:.5em}
 
-/* ---------- looking back: the record of what already happened ---------- */
+/* ---------- our journey: the record of what already happened ---------- */
 .ygroup+.ygroup{margin-top:clamp(64px,7vw,116px)}
 .yhead{display:flex;align-items:baseline;gap:1em;padding-bottom:.9rem;border-bottom:2px solid var(--accent)}
 .yhead__y{font-family:var(--display);font-size:clamp(2.2rem,calc(4.4vw * var(--ui-scale)),3.4rem);line-height:.9;letter-spacing:-.03em}

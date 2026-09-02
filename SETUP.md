@@ -65,7 +65,7 @@ directly.
 - Email alerts when an application arrives (`NOTIFY_EMAIL` is unused)
 - A privacy policy page, and a job that actually deletes applications
   past their `delete_after` date
-- Real photography, real contact details, the real Looking Back record
+- Real photography, real contact details, the real Our Journey record
 - Hosting
 
 ---

@@ -235,11 +235,11 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* looking back (teaser) */}
+      {/* our journey (teaser) */}
       <section className="sec">
         <div className="wrap">
           <div className="sec__head">
-            <div className="rv"><span className="eyebrow deva">फर्केर हेर्दा</span></div>
+            <div className="rv"><span className="eyebrow deva">हाम्रो यात्रा</span></div>
             <h2 className="h2 rv" style={d(80)}>Before this, there was a year.</h2>
             <p className="lede rv" style={{ ...d(140), marginTop: ".9em" }}>
               The 2026–27 community program did not begin from nothing. It began in borrowed rooms,
