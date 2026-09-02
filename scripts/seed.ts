@@ -65,9 +65,9 @@ async function main() {
 
   const settings = {
     email: C.SITE.email, phone: C.SITE.phone, minAge: C.SITE.minAge, crisis: C.SITE.crisis,
-    instagram: C.SITE.social.Instagram === "#" ? "" : C.SITE.social.Instagram ?? "",
-    facebook:  C.SITE.social.Facebook  === "#" ? "" : C.SITE.social.Facebook  ?? "",
-    youtube:   C.SITE.social.YouTube   === "#" ? "" : C.SITE.social.YouTube   ?? "",
+    instagram: C.SITE.social.Instagram ?? "",
+    facebook:  C.SITE.social.Facebook  ?? "",
+    youtube:   C.SITE.social.YouTube   ?? "",
     reflectionLede: C.REFLECTION.lede, reflectionNote: C.REFLECTION.note,
     partnersLede:   C.PARTNERS.lede,   partnersNote:   C.PARTNERS.note,
   };
