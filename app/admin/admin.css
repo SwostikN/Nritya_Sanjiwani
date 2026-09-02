@@ -10,8 +10,23 @@
 .adm *{box-sizing:border-box}
 .adm__shell{display:grid;grid-template-columns:var(--sidebar) 1fr;min-height:100vh}
 
-.adm__side{border-right:1px solid var(--adm-line);background:var(--surface);
-           padding:22px 0;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh;overflow-y:auto}
+/* The column paints the full height of the page so it never looks cut
+   off; the panel inside it is what sticks to the viewport. */
+.adm__side{border-right:1px solid var(--adm-line);background:var(--surface)}
+.adm__side-in{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;padding:22px 0 0}
+/* Only this band scrolls. min-height:0 is what lets it — a flex child
+   will not shrink below its content without it. The scrollbar is drawn
+   permanently rather than left as the macOS overlay one, which is
+   invisible until you are already scrolling and so let the bottom of
+   this list read as the end of it. Styling ::-webkit-scrollbar is what
+   keeps it drawn; setting scrollbar-width here would undo that. */
+.adm__side-list{flex:1 1 auto;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:6px}
+.adm__side-list::-webkit-scrollbar{width:8px}
+.adm__side-list::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:4px;
+                                         border:2px solid var(--surface)}
+/* signing out must never be the thing that fell below the fold */
+.adm__side-foot{flex:0 0 auto;display:flex;flex-direction:column;gap:6px;
+                padding:10px 0 18px;border-top:1px solid var(--adm-line)}
 .adm__brand{padding:0 20px 18px;border-bottom:1px solid var(--adm-line);margin-bottom:12px}
 .adm__brand b{font-family:var(--display);font-size:1.15rem;font-weight:600;display:block;line-height:1.2}
 .adm__brand span{font-size:.7rem;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:700}
@@ -100,7 +115,11 @@
 
 @media(max-width:860px){
   .adm__shell{grid-template-columns:1fr}
-  .adm__side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;gap:2px;padding:14px}
+  .adm__side-in{position:static;height:auto;padding:14px}
+  .adm__side-list,.adm__side-foot{flex-direction:row;flex-wrap:wrap;gap:2px;overflow:visible}
+  .adm__side-list{padding:0}
+  /* its hairline is the separator now, in place of the "You" heading */
+  .adm__side-foot{padding:8px 0 0;margin-top:6px}
   .adm__brand{width:100%;padding-bottom:12px}
   .adm__grp{display:none}
   .adm__nav{border-left:0;border-bottom:2px solid transparent;padding:.45em .7em}
