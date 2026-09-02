@@ -23,7 +23,7 @@ function Popen({ text }: { text: string }) {
   );
 }
 
-/* the grouped wall — Partner page and Looking Back */
+/* the grouped wall — Partner page and Our Journey */
 export function PartnerWallFull({ partners }: { partners: PartnersData }) {
   return (
     <>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { requireStaff } from "@/lib/auth";
+import { pagesForRole } from "@/lib/pages";
 import { supabaseServer } from "@/lib/supabase/server";
 import Sidebar from "@/components/admin/Sidebar";
 
@@ -19,6 +20,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
   ]);
 
   const counts = { applications: apps.count ?? 0, enquiries: enq.count ?? 0 };
+  const pages = pagesForRole(staff.role);
 
   /* whether submission alerts are actually switched on — an admin should never
      have to guess whether anyone is being told about new applications */
@@ -69,6 +71,20 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
             <Link key={String(label)} href={String(href)} className="adm__card" style={{ textDecoration: "none", display: "block" }}>
               <div style={{ fontFamily: "var(--display)", fontSize: "2.1rem", lineHeight: 1 }}>{n as number}</div>
               <div className="adm__meta" style={{ marginTop: ".5em" }}>{label as string}</div>
+            </Link>
+          ))}
+        </div>
+
+        <h2 className="adm__h2">Change the site, a page at a time</h2>
+        <p className="help" style={{ margin: "0 0 14px" }}>
+          Pick the page you want to change. Everything on it — the lists, the words, what is switched
+          on — is on the one screen.
+        </p>
+        <div className="adm__grid" style={{ marginBottom: 34 }}>
+          {pages.map((p) => (
+            <Link key={p.key} href={`/admin/pages/${p.key}`} className="adm__card adm__cardlink">
+              <b style={{ fontFamily: "var(--display)", fontSize: "1.05rem", fontWeight: 600 }}>{p.label}</b>
+              <span className="adm__meta" style={{ display: "block", marginTop: ".35em" }}>{p.blurb}</span>
             </Link>
           ))}
         </div>

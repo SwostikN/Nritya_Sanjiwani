@@ -74,7 +74,7 @@ export async function getContent(): Promise<SiteContent> {
       }))
     : fallback.PARTNERS.groups;
 
-  /* looking back: years carry their figures, events and lessons */
+  /* our journey: years carry their figures, events and lessons */
   const years: ReflectionYear[] = rows.reflection_years?.length
     ? rows.reflection_years.map((y) => ({
         year: y.data.year, deva: y.data.deva, title: y.data.title, summary: y.data.summary,

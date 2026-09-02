@@ -1,7 +1,9 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireStaff } from "@/lib/auth";
 import { supabaseServer } from "@/lib/supabase/server";
 import { byKey } from "@/lib/schema";
+import { pagesForCollection } from "@/lib/pages";
 import Sidebar from "@/components/admin/Sidebar";
 import CollectionEditor, { type Row } from "@/components/admin/CollectionEditor";
 
@@ -34,6 +36,12 @@ export default async function ContentPage({ params }: { params: Promise<{ collec
       : Promise.resolve({ data: null }),
   ]);
 
+  /* which page sent us here — the way back out, and the answer to
+     "where does this actually show up?" */
+  const owners = pagesForCollection(collection);
+  const home = owners[0];
+  const also = owners.slice(1);
+
   const groupOptions = def.groupBy
     ? (groups.data ?? []).map((g: { data: Record<string, unknown> }) =>
         String(g.data.year ?? g.data.title ?? g.data.label ?? ""))
@@ -47,10 +55,21 @@ export default async function ContentPage({ params }: { params: Promise<{ collec
       <main className="adm__main">
         <div className="adm__head">
           <div>
+            {home ? (
+              <Link className="adm__crumb adm__crumb--link" href={`/admin/pages/${home.key}`}>
+                ← {home.label}
+              </Link>
+            ) : null}
             <h1 className="adm__h1">{def.label}</h1>
             <p className="adm__sub">{def.blurb}</p>
-            <span className="adm__where">Appears on: {def.shownOn}</span>
+            <span className="adm__where">
+              Appears on: {def.shownOn}
+              {also.length ? ` — this list is shared with ${also.map((p) => p.label).join(" and ")}` : ""}
+            </span>
           </div>
+          {home ? (
+            <a className="b b--ghost b--sm" href={home.path} target="_blank" rel="noreferrer">View page ↗</a>
+          ) : null}
         </div>
         <CollectionEditor def={def} rows={(rows ?? []) as Row[]} groupOptions={groupOptions} />
       </main>

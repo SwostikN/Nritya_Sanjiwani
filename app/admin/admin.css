@@ -106,3 +106,46 @@
   .adm__nav{border-left:0;border-bottom:2px solid transparent;padding:.45em .7em}
   .adm__nav.is-on{border-left:0;border-bottom-color:var(--accent)}
 }
+
+/* ============================================================
+   PAGE SCREENS — the admin is organised by public page now, so
+   these are the pieces that show a page and what it is built from.
+   ============================================================ */
+.adm__h2{font-family:var(--display);font-size:1.15rem;font-weight:600;margin:0 0 .25em;line-height:1.2}
+.adm__h3{margin:0 0 4px;font-family:var(--display);font-size:1.05rem;font-weight:600}
+
+/* the "you are inside this page" line above a heading */
+.adm__crumb{display:inline-block;margin-bottom:.5em;font-size:.66rem;font-weight:700;letter-spacing:.15em;
+            text-transform:uppercase;color:var(--muted);text-decoration:none}
+a.adm__crumb--link{color:var(--accent-2)}
+a.adm__crumb--link:hover{text-decoration:underline}
+
+/* the sections a page is made of, numbered in reading order so the
+   list doubles as a map of the page */
+.adm__sections{display:flex;flex-direction:column;gap:8px;margin-bottom:4px}
+.adm__sec{display:grid;grid-template-columns:30px 1fr auto;gap:14px;align-items:start;
+  background:var(--adm-panel);border:1px solid var(--adm-line);border-radius:10px;
+  padding:14px 16px;text-decoration:none;color:inherit;transition:border-color .15s,background .15s}
+.adm__sec:hover{border-color:var(--accent);background:var(--surface)}
+.adm__sec-n{font-family:var(--display);font-size:1rem;color:var(--muted);line-height:1.35}
+.adm__sec-body{display:block;min-width:0}
+.adm__sec-body b{font-weight:600;display:block}
+.adm__sec-body .adm__meta{display:block}
+.adm__sec-count{font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);white-space:nowrap;padding-top:.2em}
+
+/* a whole card that is a link — the page tiles on the overview */
+.adm__cardlink{display:block;text-decoration:none;color:inherit;transition:border-color .15s,background .15s}
+.adm__cardlink:hover{border-color:var(--accent);background:var(--surface)}
+
+.adm__pointer{display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  padding:.55em 0;border-bottom:1px solid var(--adm-line)}
+.adm__pointer:last-child{border-bottom:0;padding-bottom:0}
+
+@media(max-width:860px){
+  /* the group headings are the whole point of the regrouping, so on
+     narrow screens they break the row rather than disappearing */
+  .adm__grp{display:block;width:100%;padding:10px 4px 2px}
+  .adm__sec{grid-template-columns:24px 1fr;gap:10px}
+  .adm__sec-count{grid-column:2;padding-top:.4em}
+}

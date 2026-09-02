@@ -138,12 +138,12 @@ export const COLLECTIONS: CollectionDef[] = [
   },
   {
     key: "partner_groups", label: "Partner groups", blurb: "The headings on the partner wall.",
-    shownOn: "Partner and Looking Back", titleField: "label", roles: ["admin"],
+    shownOn: "Partner and Our Journey", titleField: "label", roles: ["admin"],
     fields: [T("label", "Group name", { required: true })],
   },
   {
     key: "partners", label: "Partners", blurb: "The organisations named on the wall.",
-    shownOn: "Partner and Looking Back", titleField: "name", roles: ["admin"],
+    shownOn: "Partner and Our Journey", titleField: "name", roles: ["admin"],
     groupBy: { collection: "partner_groups", key: "group", label: "Group" },
     fields: [T("name", "Name", { required: true }), T("role", "What they do"),
              IMG("logo", "Logo"), T("url", "Website", { help: "Optional. Opens in a new tab." })],
@@ -154,20 +154,20 @@ export const COLLECTIONS: CollectionDef[] = [
     fields: [T("en", "English", { required: true }), DV("ne", "Nepali")],
   },
   {
-    key: "reflection_years", label: "Looking Back — years", blurb: "One entry per year of the record.",
-    shownOn: "Looking Back", titleField: "year", roles: ["admin"],
+    key: "reflection_years", label: "Our Journey — years", blurb: "One entry per year of the record.",
+    shownOn: "Our Journey", titleField: "year", roles: ["admin"],
     fields: [T("year", "Year", { required: true }), DV("deva"), T("title", "Headline"),
              TA("summary", "Summary", { rows: 5 })],
   },
   {
-    key: "reflection_stats", label: "Looking Back — figures", blurb: "The counted figures for a year.",
-    shownOn: "Looking Back", titleField: "l", roles: ["admin"],
+    key: "reflection_stats", label: "Our Journey — figures", blurb: "The counted figures for a year.",
+    shownOn: "Our Journey", titleField: "l", roles: ["admin"],
     groupBy: { collection: "reflection_years", key: "year", label: "Year" },
     fields: [T("f", "Figure", { required: true }), T("l", "Label", { required: true })],
   },
   {
-    key: "reflection_events", label: "Looking Back — events", blurb: "What actually happened, in order.",
-    shownOn: "Looking Back", titleField: "title", roles: ["admin"],
+    key: "reflection_events", label: "Our Journey — events", blurb: "What actually happened, in order.",
+    shownOn: "Our Journey", titleField: "title", roles: ["admin"],
     groupBy: { collection: "reflection_years", key: "year", label: "Year" },
     fields: [T("when", "When", { required: true, help: 'e.g. "March 2026"' }), T("where", "Where"),
              T("tag", "Kind", { help: 'e.g. "Workshop", "Performance"' }),
@@ -175,8 +175,8 @@ export const COLLECTIONS: CollectionDef[] = [
              IMG(), ALT()],
   },
   {
-    key: "reflection_lessons", label: "Looking Back — what we learned", blurb: "The lessons from a year.",
-    shownOn: "Looking Back", titleField: "title", roles: ["admin"],
+    key: "reflection_lessons", label: "Our Journey — what we learned", blurb: "The lessons from a year.",
+    shownOn: "Our Journey", titleField: "title", roles: ["admin"],
     groupBy: { collection: "reflection_years", key: "year", label: "Year" },
     fields: [T("n", "Number"), T("title", "Title", { required: true }), TA("body", "Body", { rows: 5 })],
   },
@@ -197,8 +197,8 @@ export const SETTINGS_FIELDS: Field[] = [
   T("instagram", "Instagram URL"),
   T("facebook", "Facebook URL"),
   T("youtube", "YouTube URL"),
-  TA("reflectionLede", "Looking Back — opening paragraph", { rows: 3 }),
-  TA("reflectionNote", "Looking Back — note on what appears", { rows: 3 }),
+  TA("reflectionLede", "Our Journey — opening paragraph", { rows: 3 }),
+  TA("reflectionNote", "Our Journey — note on what appears", { rows: 3 }),
   TA("partnersLede", "Partner wall — opening paragraph", { rows: 3 }),
   TA("partnersNote", "Partner wall — note", { rows: 3 }),
 ];
@@ -207,11 +207,11 @@ export const SETTINGS_FIELDS: Field[] = [
    the Release 1 / Release 2 split in PRD §1. */
 export const TOGGLEABLE_SECTIONS: { key: string; label: string; where: string }[] = [
   { key: "home_stories",    label: "Stories (consent-gated)", where: "Home" },
-  { key: "home_reflection", label: "Looking Back teaser",     where: "Home" },
+  { key: "home_reflection", label: "Our Journey teaser",     where: "Home" },
   { key: "home_partners",   label: "Partner strip",           where: "Home" },
   { key: "nav_journal",     label: "Journal",                 where: "Navigation and footer" },
   { key: "nav_gallery",     label: "Gallery",                 where: "Navigation and footer" },
-  { key: "nav_reflection",  label: "Looking Back",            where: "Navigation and footer" },
+  { key: "nav_reflection",  label: "Our Journey",            where: "Navigation and footer" },
   { key: "nav_support",     label: "Support",                 where: "Footer" },
   { key: "nav_apply",       label: "Join the Journey",        where: "Footer" },
 ];

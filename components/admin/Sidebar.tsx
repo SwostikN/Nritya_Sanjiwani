@@ -1,13 +1,31 @@
 "use client";
+/* ============================================================
+   The navigation is grouped the way the site is read: a column of
+   pages, not a column of database tables. Picking a page opens
+   everything that page is built from. The flat list of twenty
+   collections it replaced meant knowing that "pillars" lived on
+   the home page before you could find it.
+   ============================================================ */
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { forRole } from "@/lib/schema";
+import { pagesForRole } from "@/lib/pages";
 
 export default function Sidebar({ role, name, counts }:
   { role: "admin" | "editor"; name: string; counts: { applications: number; enquiries: number } }) {
   const path = usePathname();
   const on = (href: string) => path === href || (href !== "/admin" && path.startsWith(href));
-  const cols = forRole(role);
+  const pages = pagesForRole(role);
+
+  /* Editing a section keeps its page lit in the sidebar, so it is
+     always clear which page you are inside. */
+  const editing = path.startsWith("/admin/content/") ? path.split("/")[3] : "";
+  const pageOn = (key: string) =>
+    on(`/admin/pages/${key}`) ||
+    (Boolean(editing) && (pages.find((p) => p.key === key)?.sections.includes(editing) ?? false));
+
+  const nav = (href: string, label: React.ReactNode, active = on(href)) => (
+    <Link key={href} className={"adm__nav" + (active ? " is-on" : "")} href={href}>{label}</Link>
+  );
 
   return (
     <aside className="adm__side">
@@ -16,33 +34,22 @@ export default function Sidebar({ role, name, counts }:
         <span>{role === "admin" ? "Administrator" : "Editor"}</span>
       </div>
 
-      <Link className={"adm__nav" + (path === "/admin" ? " is-on" : "")} href="/admin">Overview</Link>
+      {nav("/admin", "Overview", path === "/admin")}
 
       <div className="adm__grp">Enquiries</div>
-      <Link className={"adm__nav" + (on("/admin/submissions/applications") ? " is-on" : "")} href="/admin/submissions/applications">
-        Applications {counts.applications > 0 ? <i>{counts.applications} new</i> : null}
-      </Link>
-      <Link className={"adm__nav" + (on("/admin/submissions/enquiries") ? " is-on" : "")} href="/admin/submissions/enquiries">
-        Partnerships {counts.enquiries > 0 ? <i>{counts.enquiries} new</i> : null}
-      </Link>
-      <Link className={"adm__nav" + (on("/admin/submissions/subscribers") ? " is-on" : "")} href="/admin/submissions/subscribers">
-        Newsletter
-      </Link>
+      {nav("/admin/submissions/applications",
+        <>Applications {counts.applications > 0 ? <i>{counts.applications} new</i> : null}</>)}
+      {nav("/admin/submissions/enquiries",
+        <>Partnerships {counts.enquiries > 0 ? <i>{counts.enquiries} new</i> : null}</>)}
+      {nav("/admin/submissions/subscribers", "Newsletter")}
 
-      <div className="adm__grp">Content</div>
-      {cols.map((c) => (
-        <Link key={c.key} className={"adm__nav" + (on(`/admin/content/${c.key}`) ? " is-on" : "")}
-              href={`/admin/content/${c.key}`}>{c.label}</Link>
-      ))}
-      <Link className={"adm__nav" + (on("/admin/media") ? " is-on" : "")} href="/admin/media">Images</Link>
+      <div className="adm__grp">Pages</div>
+      {pages.map((p) => nav(`/admin/pages/${p.key}`, p.label, pageOn(p.key)))}
 
-      {role === "admin" ? (
-        <>
-          <div className="adm__grp">Site</div>
-          <Link className={"adm__nav" + (on("/admin/settings") ? " is-on" : "")} href="/admin/settings">Details &amp; sections</Link>
-          <Link className={"adm__nav" + (on("/admin/users") ? " is-on" : "")} href="/admin/users">People</Link>
-        </>
-      ) : null}
+      <div className="adm__grp">Everywhere</div>
+      {nav("/admin/media", "Images")}
+      {role === "admin" ? nav("/admin/settings", "Site-wide details") : null}
+      {role === "admin" ? nav("/admin/users", "People") : null}
 
       <div className="adm__grp">You</div>
       <Link className="adm__nav" href="/" target="_blank">View the site ↗</Link>

@@ -72,24 +72,29 @@ export async function reorder(ids: string[]) {
   return { ok: true };
 }
 
-export async function saveSettings(values: Record<string, unknown>) {
-  await requireAdmin();
+/* Both of these merge rather than replace. Settings are now edited
+   a page at a time, so a form only ever posts the handful of keys
+   it showed — writing that object whole would quietly wipe every
+   field the editor could not see. */
+async function mergeSetting(key: "site" | "sections", patch: Record<string, unknown>) {
   const sb = await supabaseServer();
+  const { data: current } = await sb.from("site_settings").select("value").eq("key", key).maybeSingle();
+  const value = { ...((current?.value ?? {}) as Record<string, unknown>), ...patch };
   const { error } = await sb.from("site_settings")
-    .upsert({ key: "site", value: values, updated_at: new Date().toISOString() });
+    .upsert({ key, value, updated_at: new Date().toISOString() });
   if (error) return { error: error.message };
   refresh();
   return { ok: true };
 }
 
+export async function saveSettings(values: Record<string, unknown>) {
+  await requireAdmin();
+  return mergeSetting("site", values);
+}
+
 export async function saveSections(values: Record<string, boolean>) {
   await requireAdmin();
-  const sb = await supabaseServer();
-  const { error } = await sb.from("site_settings")
-    .upsert({ key: "sections", value: values, updated_at: new Date().toISOString() });
-  if (error) return { error: error.message };
-  refresh();
-  return { ok: true };
+  return mergeSetting("sections", values);
 }
 
 export async function setSubmissionStatus(table: string, id: string, status: string, notes?: string) {

@@ -28,7 +28,7 @@ export const keyFor  = (path: string) => PATH_KEYS[path] ?? "404";
 /* the page titles from titleFor() in the original */
 export const PAGE_TITLES: Record<string, string> = {
   story:      "Our Story",
-  reflection: "Looking Back",
+  reflection: "Our Journey",
   program:    "The Program",
   gallery:    "Gallery",
   journal:    "Journal",
