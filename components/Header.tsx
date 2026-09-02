@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import type { NavItem } from "@/lib/content";
 import { keyFor } from "@/lib/routes";
+import Logo from "./Logo";
 
 /* `nav` is passed in rather than imported: which entries appear is a
    setting an admin can change, and that lives in the database. */
@@ -49,6 +50,7 @@ export default function Header({ nav }: { nav: NavItem[] }) {
     <header className="hdr" id="hdr" ref={hdr}>
       <div className="hdr__in">
         <div className="brand" data-go="home">
+          <Logo className="brand__mark" />
           <span className="brand__en">Nritya Sanjiwani</span>
           <span className="brand__ne">नृत्य संजीवनी</span>
         </div>
