@@ -106,6 +106,19 @@ export const COLLECTIONS: CollectionDef[] = [
              T("ask", "What it asks", { help: 'e.g. "A few hours, most weeks"' })],
   },
   {
+    key: "stories", label: "Stories", blurb: "What participants said, in their own words.",
+    shownOn: "Home", titleField: "name", roles: ["admin"],
+    fields: [
+      TA("quote", "What they said", { rows: 5, required: true,
+         help: "Their words, not a summary of them. Quote marks are added for you." }),
+      T("name", "Who said it", { help: 'A first name is enough. Leave blank and it reads "Anonymous".' }),
+      T("role", "Who they are", { help: 'e.g. "Participant, 2026 cohort". Optional.' }),
+      DV("deva"),
+      { key: "consent", label: "Signed consent is on file", type: "boolean",
+        help: "Nothing here reaches the site until this is ticked, however the row is otherwise set." },
+    ],
+  },
+  {
     key: "partner_types", label: "Kinds of partner", blurb: "The three partner cards.",
     shownOn: "Home and Partner", titleField: "title", roles: ["admin"],
     fields: [T("title", "Title", { required: true }), TA("body", "Body"), T("cta", "Link text"),

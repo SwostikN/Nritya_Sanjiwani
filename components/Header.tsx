@@ -3,10 +3,12 @@
    Markup identical to v2; the nav is built from NAV as it was. */
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { NAV } from "@/lib/content";
+import type { NavItem } from "@/lib/content";
 import { keyFor } from "@/lib/routes";
 
-export default function Header() {
+/* `nav` is passed in rather than imported: which entries appear is a
+   setting an admin can change, and that lives in the database. */
+export default function Header({ nav }: { nav: NavItem[] }) {
   const pathname = usePathname();
   const current = keyFor(pathname);
   const [open, setOpen] = useState(false);
@@ -51,7 +53,7 @@ export default function Header() {
           <span className="brand__ne">नृत्य संजीवनी</span>
         </div>
         <nav className="nav" id="nav">
-          {NAV.map(([label, key]) => (
+          {nav.map(([label, key]) => (
             <span key={key} className={"nav__i" + (key === current ? " is-on" : "")} data-go={key}>
               {label}
             </span>
@@ -73,7 +75,7 @@ export default function Header() {
         </button>
       </div>
       <div className={"mobnav" + (open ? " is-open" : "")} id="mobnav">
-        {NAV.map(([label, key]) => (
+        {nav.map(([label, key]) => (
           <span key={key} className="mobnav__i" data-go={key}>{label}</span>
         ))}
         <span className="mobnav__i" data-go="partner" style={{ color: "var(--accent-2)" }}>

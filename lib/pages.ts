@@ -41,7 +41,7 @@ export const SITE_PAGES: SitePageDef[] = [
   {
     key: "home", label: "Landing page", path: "/",
     blurb: "The first page a visitor sees.",
-    sections: ["marquee", "pillars", "method", "stats", "phases", "partner_types", "take_part"],
+    sections: ["marquee", "pillars", "method", "stats", "phases", "stories", "partner_types", "take_part"],
     settings: [],
     toggles: ["home_stories", "home_reflection", "home_partners"],
     fixed: "The headline, the opening question and the closing invitation are written into the page itself. " +

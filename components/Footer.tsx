@@ -1,7 +1,8 @@
-import { getContent } from "@/lib/content-db";
+import { getContent, visibleNav } from "@/lib/content-db";
 
 export default async function Footer() {
-  const { SITE, FOOTER_NAV } = await getContent();
+  const { SITE, FOOTER_NAV, sections } = await getContent();
+  const nav = visibleNav(sections, FOOTER_NAV);
   const contact = [SITE.email, SITE.phone].filter(Boolean);
   return (
     <footer className="ft">
@@ -15,7 +16,7 @@ export default async function Footer() {
           <div>
             <h4>Navigate</h4>
             <div className="ft__l" id="ftNav">
-              {FOOTER_NAV.map(([label, key]) => (
+              {nav.map(([label, key]) => (
                 <span key={key} data-go={key}>{label}</span>
               ))}
             </div>

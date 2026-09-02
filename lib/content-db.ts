@@ -12,7 +12,7 @@ import * as fallback from "./content";
 import type {
   GalleryGroup, JournalItem, MethodItem, PhaseItem, StatItem, PartnerType,
   TakePartItem, Chapter, ProgramBlock, SupportModel, PartnersData, ReflectionData,
-  NavItem, PartnerItem, TimelineEvent, LearnedItem, ReflectionYear,
+  NavItem, PartnerItem, TimelineEvent, LearnedItem, ReflectionYear, StoryItem,
 } from "./content";
 
 interface Row { data: Record<string, any>; sort: number }
@@ -47,7 +47,7 @@ export interface SiteContent {
   PARTNER_TYPES: PartnerType[]; TAKE_PART: TakePartItem[]; CHAPTERS: Chapter[];
   PROGRAM_BLOCKS: ProgramBlock[]; GALLERY: GalleryGroup[]; JOURNAL: JournalItem[];
   INTERESTS: string[]; SUPPORT_ITEMS: string[]; SUPPORT_MODELS: SupportModel[];
-  REFLECTION: ReflectionData; PARTNERS: PartnersData;
+  REFLECTION: ReflectionData; PARTNERS: PartnersData; STORIES: StoryItem[];
   sections: Record<string, boolean>;
 }
 
@@ -88,6 +88,13 @@ export async function getContent(): Promise<SiteContent> {
       }))
     : fallback.REFLECTION.years;
 
+  /* stories: a second gate on top of `published`. A story only
+     reaches a visitor once someone has ticked that the signed
+     consent exists — that is the promise the section makes. */
+  const stories: StoryItem[] = (rows.stories ?? [])
+    .map((r) => r.data as StoryItem)
+    .filter((s) => s.consent === true && Boolean(s.quote));
+
   const social: Record<string, string> = {};
   if (settings.instagram) social.Instagram = settings.instagram;
   if (settings.facebook)  social.Facebook  = settings.facebook;
@@ -116,6 +123,7 @@ export async function getContent(): Promise<SiteContent> {
     PROGRAM_BLOCKS: pick<ProgramBlock>(rows.program_blocks, fallback.PROGRAM_BLOCKS),
     JOURNAL:        pick<JournalItem>(rows.journal, fallback.JOURNAL),
     SUPPORT_MODELS: pick<SupportModel>(rows.support_models, fallback.SUPPORT_MODELS),
+    STORIES: stories,
     GALLERY: galleryGroups,
     PARTNERS: {
       lede: settings.partnersLede ?? fallback.PARTNERS.lede,
@@ -133,3 +141,17 @@ export async function getContent(): Promise<SiteContent> {
 
 /* a section is on unless it has been explicitly switched off */
 export const on = (sections: Record<string, boolean>, key: string) => sections[key] !== false;
+
+/* Which switch, if any, decides whether a nav entry is offered. The
+   page itself stays reachable by address — switching it off only
+   stops the header and footer pointing at it. */
+const NAV_TOGGLE: Record<string, string> = {
+  journal:    "nav_journal",
+  gallery:    "nav_gallery",
+  reflection: "nav_reflection",
+  support:    "nav_support",
+  apply:      "nav_apply",
+};
+
+export const visibleNav = (sections: Record<string, boolean>, items: NavItem[]): NavItem[] =>
+  items.filter(([, key]) => !NAV_TOGGLE[key] || on(sections, NAV_TOGGLE[key]));
