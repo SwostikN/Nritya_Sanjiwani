@@ -4,6 +4,7 @@ export default async function Footer() {
   const { SITE, FOOTER_NAV, sections } = await getContent();
   const nav = visibleNav(sections, FOOTER_NAV);
   const contact = [SITE.email, SITE.phone].filter(Boolean);
+  const social = Object.entries(SITE.social);
   return (
     <footer className="ft">
       <div className="wrap">
@@ -22,13 +23,18 @@ export default async function Footer() {
             </div>
           </div>
           <div>
-            <h4>Follow</h4>
-            <div className="ft__l" id="ftSocial">
-              {Object.entries(SITE.social).map(([name, url]) => (
-                <a key={name} href={url} target="_blank" rel="noopener noreferrer">{name}</a>
-              ))}
-            </div>
-            <h4 style={{ marginTop: "2rem" }}>Contact</h4>
+            {/* no accounts saved yet means no heading over an empty column */}
+            {social.length ? (
+              <>
+                <h4>Follow</h4>
+                <div className="ft__l" id="ftSocial">
+                  {social.map(([name, url]) => (
+                    <a key={name} href={url} target="_blank" rel="noopener noreferrer">{name}</a>
+                  ))}
+                </div>
+              </>
+            ) : null}
+            <h4 style={social.length ? { marginTop: "2rem" } : undefined}>Contact</h4>
             <p id="ftContact">
               {contact.length
                 ? contact.map((c, i) => <span key={i}>{i > 0 ? <br /> : null}{c}</span>)

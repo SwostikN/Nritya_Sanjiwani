@@ -84,10 +84,12 @@ export const SITE_PAGES: SitePageDef[] = [
   },
   {
     key: "partner", label: "Partner With Us", path: "/partner",
-    blurb: "The case for working together, and the enquiry form.",
+    blurb: "The case for working together, the enquiry form, and how to reach the team.",
     sections: ["partner_types", "partner_groups", "partners", "interests"],
     settings: ["partnersLede", "partnersNote"],
     toggles: [],
+    fixed: "The email, phone and social links under the form come from Site-wide details, " +
+           "because the footer shows them on every page too.",
   },
   {
     key: "support", label: "Support", path: "/support",
@@ -102,12 +104,6 @@ export const SITE_PAGES: SitePageDef[] = [
     toggles: [], linkToggle: "nav_apply",
     fixed: "The questions on the form are fixed — changing them means changing what is stored, " +
            "so ask a developer.",
-  },
-  {
-    key: "contact", label: "Contact", path: "/contact",
-    blurb: "How to reach the team.",
-    sections: [], settings: ["email", "phone"], toggles: [],
-    fixed: "The social links shown here come from Site-wide details.",
   },
 ];
 

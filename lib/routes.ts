@@ -15,7 +15,6 @@ export const PAGE_PATHS: Record<string, string> = {
   partner:    "/partner",
   support:    "/support",
   apply:      "/apply",
-  contact:    "/contact",
 };
 
 export const PATH_KEYS: Record<string, string> = Object.fromEntries(
@@ -35,7 +34,6 @@ export const PAGE_TITLES: Record<string, string> = {
   partner:    "Partner With Us",
   support:    "Support",
   apply:      "Join the Journey",
-  contact:    "Contact",
   "404":      "Not found",
 };
 

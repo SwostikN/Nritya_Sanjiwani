@@ -36,11 +36,11 @@ export const SITE: SiteInfo = {
   phone:    "",              // e.g. "+977 ..."
   minAge:   "",              // e.g. "16"
   crisis:   "",              // local mental-health support line
-  social: {
-    Instagram: "#",
-    Facebook:  "#",
-    YouTube:   "#"
-  }
+  /* Empty until the real profiles are saved in the admin. There is no
+     placeholder here on purpose: a blank field should make its row
+     disappear, which is what the admin promises, not render a link
+     that goes nowhere. */
+  social: {}          // e.g. { Instagram: "https://instagram.com/..." }
 };
 
 /* ---------- image set (all verified, Wikimedia Commons) ---------- */
@@ -63,13 +63,16 @@ export const IMG = {
 };
 
 /* ---------- content ---------- */
+/* No Contact entry: /partner is the one door for getting in touch —
+   it carries the form and the direct details, and the footer repeats
+   those on every page. /contact redirects there. */
 export const NAV: NavItem[] = [
   ["Our Story","story"],["Our Journey","reflection"],["The Program","program"],["Gallery","gallery"],
-  ["Journal","journal"],["Partner","partner"],["Contact","contact"]
+  ["Journal","journal"],["Partner","partner"]
 ];
 export const FOOTER_NAV: NavItem[] = [
   ["Our Story","story"],["Our Journey","reflection"],["The Program","program"],["Gallery","gallery"],["Journal","journal"],
-  ["Partner With Us","partner"],["Support","support"],["Apply","apply"],["Contact","contact"]
+  ["Partner With Us","partner"],["Support","support"],["Apply","apply"]
 ];
 export const MARQUEE: NavItem[] = [
   ["Movement","गति"],["Expression","अभिव्यक्ति"],["Connection","जोड"],["Community","समुदाय"],

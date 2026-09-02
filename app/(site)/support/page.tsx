@@ -31,7 +31,7 @@ export default async function Support() {
             {SUPPORT_MODELS.map((m, i) => (
               <article className="card rv" style={d((i % 3) * 90)} key={m.title}>
                 <h3 className="h3">{m.title}</h3><p>{m.body}</p>
-                <span className="tlink" data-go="contact">Start a conversation <span className="arw">→</span></span>
+                <span className="tlink" data-go="partner">Start a conversation <span className="arw">→</span></span>
               </article>
             ))}
           </div>

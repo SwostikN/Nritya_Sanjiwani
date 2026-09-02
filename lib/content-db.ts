@@ -106,7 +106,7 @@ export async function getContent(): Promise<SiteContent> {
       phone:  settings.phone  ?? fallback.SITE.phone,
       minAge: settings.minAge ?? fallback.SITE.minAge,
       crisis: settings.crisis ?? fallback.SITE.crisis,
-      social: Object.keys(social).length ? social : fallback.SITE.social,
+      social,
     },
     NAV: fallback.NAV,
     FOOTER_NAV: fallback.FOOTER_NAV,
