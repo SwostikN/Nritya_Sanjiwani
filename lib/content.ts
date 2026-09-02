@@ -22,6 +22,10 @@ export interface SupportModel { title:string; body:string }
 export interface PartnerItem  { name:string; role?:string; logo?:string; url?:string }
 export interface PartnerGroup { label:string; items:PartnerItem[] }
 export interface PartnersData { lede:string; note:string; groups:PartnerGroup[] }
+/* No fallback list for this one: stories are never written into the
+   code. They are added in the admin as each participant's signed
+   consent arrives, and until then the section shows pending slots. */
+export interface StoryItem    { quote:string; name?:string; role?:string; deva?:string; consent?:boolean }
 export interface TimelineEvent{ when:string; where?:string; tag?:string; title:string; body:string; img?:string; alt?:string }
 export interface LearnedItem  { n:string; title:string; body:string }
 export interface ReflectionYear{ year:string; deva?:string; title?:string; summary?:string; stats?:StatItem[]; events?:TimelineEvent[]; learned?:LearnedItem[] }

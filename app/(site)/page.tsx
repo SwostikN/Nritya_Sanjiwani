@@ -4,10 +4,11 @@ import Stats from "@/components/Stats";
 import HeroMedia from "@/components/HeroMedia";
 import { PartnerStrip } from "@/components/PartnerWall";
 import { d } from "@/lib/util";
-import { getContent } from "@/lib/content-db";
+import { getContent, on } from "@/lib/content-db";
 
 export default async function Home() {
-  const { PILLARS, METHOD, STATS, PHASES, PARTNER_TYPES, TAKE_PART, REFLECTION, PARTNERS } = await getContent();
+  const { PILLARS, METHOD, STATS, PHASES, PARTNER_TYPES, TAKE_PART, REFLECTION, PARTNERS, STORIES, sections } =
+    await getContent();
   const y0 = REFLECTION.years[0];
   return (
     <div className="page is-on" data-page="home">
@@ -164,7 +165,9 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* stories (consent-gated) */}
+      {/* stories (consent-gated) — the pending slots stand in until
+          a story with signed consent is added in the admin */}
+      {on(sections, "home_stories") ? (
       <section className="sec sec--surface">
         <div className="wrap">
           <div className="sec__head">
@@ -172,7 +175,15 @@ export default async function Home() {
             <h2 className="h2 rv" style={d(80)}>Every movement carries a story.</h2>
           </div>
           <div className="grid3" id="storySlots">
-            {[0, 1, 2].map((i) => (
+            {STORIES.length ? STORIES.map((s, i) => (
+              <article className="card rv" style={d(i * 100)} key={i}>
+                {s.deva ? <div className="card__deva">{s.deva}</div> : null}
+                <p>&ldquo;{s.quote}&rdquo;</p>
+                <div className="card__ask">
+                  {s.name || "Anonymous"}{s.role ? ` — ${s.role}` : ""}
+                </div>
+              </article>
+            )) : [0, 1, 2].map((i) => (
               <div className="rv" style={d(i * 100)} key={i}>
                 <div className="slot r-4x5">
                   <span className="slot__mark">कथा</span>
@@ -189,6 +200,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
+      ) : null}
 
       {/* partners */}
       <section className="sec">
@@ -236,6 +248,7 @@ export default async function Home() {
       </section>
 
       {/* our journey (teaser) */}
+      {on(sections, "home_reflection") && y0 ? (
       <section className="sec">
         <div className="wrap">
           <div className="sec__head">
@@ -260,8 +273,10 @@ export default async function Home() {
           </div>
         </div>
       </section>
+      ) : null}
 
       {/* partners (quiet strip) */}
+      {on(sections, "home_partners") ? (
       <section className="sec sec--surface sec--tight">
         <div className="wrap">
           <div className="rv" style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline", justifyContent: "space-between", gap: "1.2em", marginBottom: "clamp(20px,2.4vw,30px)" }}>
@@ -271,6 +286,7 @@ export default async function Home() {
           <div className="rv" style={d(100)} id="partnerWallHome"><PartnerStrip partners={PARTNERS} /></div>
         </div>
       </section>
+      ) : null}
 
       {/* closing */}
       <section className="sec sec--deep" style={{ textAlign: "center" }}>
