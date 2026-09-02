@@ -154,6 +154,11 @@ p:last-child{margin-bottom:0}
 }
 .hdr.is-stuck .hdr__in{height:60px}
 .brand{display:flex;align-items:baseline;gap:.7em;cursor:pointer}
+/* the mark has no baseline to sit on, so it centres against the wordmark
+   instead, and shrinks with the bar when the header sticks */
+.brand__mark{align-self:center;flex:none;height:32px;width:auto;display:block;
+  transition:height .4s var(--ease-soft)}
+.hdr.is-stuck .brand__mark{height:27px}
 .brand__en{font-family:var(--display);font-size:calc(1.45rem / var(--ui-scale));letter-spacing:-.01em;font-variation-settings:'SOFT' 30,'WONK' 1}
 .brand__ne{font-family:var(--deva);font-size:calc(.92rem / var(--ui-scale));color:var(--accent-2);opacity:.9}
 .nav{display:flex;align-items:center;gap:clamp(14px,1.9vw,30px)}
@@ -185,6 +190,16 @@ p:last-child{margin-bottom:0}
 @media(max-width:1120px){
   .nav{display:none}
   .burger{display:block}
+}
+/* the mark costs the lockup about 40px, which is more than a small
+   phone has spare next to the burger. Everything steps down together
+   rather than any one part being dropped. */
+@media(max-width:520px){
+  .brand{gap:.5em}
+  .brand__mark{height:27px}
+  .hdr.is-stuck .brand__mark{height:24px}
+  .brand__en{font-size:calc(1.22rem / var(--ui-scale))}
+  .brand__ne{font-size:calc(.8rem / var(--ui-scale))}
 }
 
 /* ---------- reveal animation (scroll-triggered) ---------- */
