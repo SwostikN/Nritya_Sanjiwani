@@ -1,6 +1,7 @@
 import Marquee from "@/components/Marquee";
 import Frame from "@/components/Frame";
 import Stats from "@/components/Stats";
+import Wave from "@/components/Wave";
 import HeroMedia from "@/components/HeroMedia";
 import { PartnerStrip } from "@/components/PartnerWall";
 import { d } from "@/lib/util";
@@ -94,13 +95,7 @@ export default async function Home() {
             <div className="rv"><span className="eyebrow deva">गति</span></div>
             <h2 className="h2 rv" style={d(80)}>The method moves in three</h2>
           </div>
-          <svg className="wave rv" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M0,86 C160,10 300,110 460,60 C620,10 700,108 860,66 C1000,30 1090,92 1200,44"
-                  fill="none" stroke="var(--accent)" strokeWidth="1.6" />
-            <circle cx="180" cy="52" r="5" fill="var(--accent-2)" />
-            <circle cx="620" cy="66" r="5" fill="var(--accent-2)" />
-            <circle cx="1050" cy="64" r="5" fill="var(--accent-2)" />
-          </svg>
+          <Wave />
           <div className="method" id="method">
             {METHOD.map((m, i) => (
               <article className="mcard rv" style={d(i * 110)} key={m.n}>
