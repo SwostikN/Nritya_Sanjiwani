@@ -8,8 +8,8 @@ import { d } from "@/lib/util";
 import { getContent, on } from "@/lib/content-db";
 
 export default async function Home() {
-  const { PILLARS, METHOD, STATS, PHASES, PARTNER_TYPES, TAKE_PART, REFLECTION, PARTNERS, STORIES, sections } =
-    await getContent();
+  const { PILLARS, METHOD, STATS, PHASES, PARTNER_TYPES, TAKE_PART, REFLECTION, PARTNERS, STORIES,
+          HOME_ABOUT: about, sections } = await getContent();
   const y0 = REFLECTION.years[0];
   return (
     <div className="page is-on" data-page="home">
@@ -63,29 +63,33 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* what it is */}
+      {/* what it is — every line of this comes from Settings on the
+          Landing page screen in the admin, so a blank one is a
+          deliberate removal and leaves nothing behind. Without the
+          picture the words take the whole column rather than half of
+          an empty split. */}
       <section className="sec sec--surface">
-        <div className="wrap split">
-          <div className="rv rv--l">
-            <div className="frame r-4x5 frame--hover">
-              <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Kathak_Solo_Performance_%2818%29.jpg/1920px-Kathak_Solo_Performance_%2818%29.jpg"
-                   alt="A dancer standing with hands joined at the chest, head lowered, in a moment of stillness." />
-              <div className="cap">Stillness is part of the form</div>
+        <div className={"wrap " + (about.img ? "split" : "narrow")}>
+          {about.img ? (
+            <div className="rv rv--l">
+              <div className="frame r-4x5 frame--hover">
+                <img loading="lazy" src={about.img} alt={about.alt} />
+                {about.cap ? <div className="cap">{about.cap}</div> : null}
+              </div>
             </div>
-          </div>
+          ) : null}
           <div className="rv rv--r" style={d(100)}>
-            <span className="eyebrow">What is Nritya Sanjiwani</span>
-            <h2 className="h2" style={{ margin: ".55em 0 .6em" }}>More than a dance class.</h2>
-            <p className="lede">
-              Nritya Sanjiwani is a cultural movement for emotional well-being. It brings six practices
-              into one room, and lets participants decide what to do with them.
-            </p>
+            {about.eyebrow ? <span className="eyebrow">{about.eyebrow}</span> : null}
+            {about.title ? <h2 className="h2" style={{ margin: ".55em 0 .6em" }}>{about.title}</h2> : null}
+            {about.body ? <p className="lede">{about.body}</p> : null}
             {PILLARS.length > 0 && (
               <div className="pills" id="pills">
                 {PILLARS.map((p) => <span className="pill" key={p}>{p}</span>)}
               </div>
             )}
-            <span className="tlink" data-go="story">Our Approach <span className="arw">→</span></span>
+            {about.cta ? (
+              <span className="tlink" data-go={about.go}>{about.cta} <span className="arw">→</span></span>
+            ) : null}
           </div>
         </div>
       </section>

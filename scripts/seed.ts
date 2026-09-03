@@ -71,6 +71,11 @@ async function main() {
     youtube:   C.SITE.social.YouTube   ?? "",
     reflectionLede: C.REFLECTION.lede, reflectionNote: C.REFLECTION.note,
     partnersLede:   C.PARTNERS.lede,   partnersNote:   C.PARTNERS.note,
+    /* the "What is Nritya Sanjiwani" block on the landing page */
+    homeAboutEyebrow: C.HOME_ABOUT.eyebrow, homeAboutTitle: C.HOME_ABOUT.title,
+    homeAboutBody:    C.HOME_ABOUT.body,    homeAboutCta:   C.HOME_ABOUT.cta,
+    homeAboutGo:      C.HOME_ABOUT.go,      homeAboutImg:   C.HOME_ABOUT.img,
+    homeAboutAlt:     C.HOME_ABOUT.alt,     homeAboutCap:   C.HOME_ABOUT.cap,
   };
   const { error } = await sb.from("site_settings").upsert({ key: "site", value: settings });
   if (error) { console.error(`  settings: ${error.message}`); process.exit(1); }

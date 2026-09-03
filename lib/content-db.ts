@@ -19,7 +19,7 @@ import type {
   GalleryYear, JournalItem, MethodItem, PhaseItem, StatItem, PartnerType,
   TakePartItem, Chapter, ProgramBlock, SupportModel, PartnersData, ReflectionData,
   NavItem, PartnerItem, TimelineEvent, LearnedItem, ReflectionYear, StoryItem,
-  TeamMember, NavNode, NavChild,
+  TeamMember, NavNode, NavChild, HomeAbout,
 } from "./content";
 
 interface Row { data: Record<string, any>; sort: number }
@@ -63,7 +63,7 @@ export interface SiteContent {
   PROGRAM_BLOCKS: ProgramBlock[]; GALLERY: GalleryYear[]; JOURNAL: JournalItem[];
   INTERESTS: string[]; SUPPORT_ITEMS: string[]; SUPPORT_MODELS: SupportModel[];
   REFLECTION: ReflectionData; PARTNERS: PartnersData; STORIES: StoryItem[];
-  TEAM: TeamMember[]; HEADER_NAV: NavNode[];
+  TEAM: TeamMember[]; HEADER_NAV: NavNode[]; HOME_ABOUT: HomeAbout;
   sections: Record<string, boolean>;
 }
 
@@ -124,6 +124,21 @@ export async function getContent(): Promise<SiteContent> {
     .map((r) => r.data as StoryItem)
     .filter((s) => s.consent === true && Boolean(s.quote));
 
+  /* the "What is Nritya Sanjiwani" block. `??`, not `||`: a field
+     cleared in the admin should take that line off the page, not
+     bring back the words shipped in the code. `go` is the exception —
+     a link still has to lead somewhere. */
+  const homeAbout: HomeAbout = {
+    eyebrow: settings.homeAboutEyebrow ?? fallback.HOME_ABOUT.eyebrow,
+    title:   settings.homeAboutTitle   ?? fallback.HOME_ABOUT.title,
+    body:    settings.homeAboutBody    ?? fallback.HOME_ABOUT.body,
+    cta:     settings.homeAboutCta     ?? fallback.HOME_ABOUT.cta,
+    go:      settings.homeAboutGo      || fallback.HOME_ABOUT.go,
+    img:     settings.homeAboutImg     ?? fallback.HOME_ABOUT.img,
+    alt:     settings.homeAboutAlt     ?? fallback.HOME_ABOUT.alt,
+    cap:     settings.homeAboutCap     ?? fallback.HOME_ABOUT.cap,
+  };
+
   const social: Record<string, string> = {};
   if (settings.instagram) social.Instagram = settings.instagram;
   if (settings.facebook)  social.Facebook  = settings.facebook;
@@ -139,6 +154,7 @@ export async function getContent(): Promise<SiteContent> {
     },
     HEADER_NAV: fallback.HEADER_NAV,
     FOOTER_NAV: fallback.FOOTER_NAV,
+    HOME_ABOUT: homeAbout,
     MARQUEE: live ? (rows.marquee ?? []).map((m) => [m.data.en, m.data.ne] as NavItem) : fallback.MARQUEE,
     PILLARS:       labels("pillars",       fallback.PILLARS),
     INTERESTS:     labels("interests",     fallback.INTERESTS),

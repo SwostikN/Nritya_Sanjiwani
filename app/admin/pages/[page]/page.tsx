@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { requireStaff } from "@/lib/auth";
 import { supabaseServer } from "@/lib/supabase/server";
 import { byKey } from "@/lib/schema";
-import { pageByKey, pagesForCollection, fieldsFor, togglesFor } from "@/lib/pages";
+import { pageByKey, pagesForCollection, fieldsFor, togglesFor, defaultsFor } from "@/lib/pages";
 import Sidebar from "@/components/admin/Sidebar";
 import PageSettingsForm from "@/components/admin/PageSettingsForm";
 
@@ -112,9 +112,13 @@ export default async function PageHub({ params }: { params: Promise<{ page: stri
             <h2 className="adm__h2">Settings for this page</h2>
             <PageSettingsForm
               fields={fields}
-              values={(site?.data?.value ?? {}) as Record<string, string>}
+              /* the shipped words stand behind anything never saved, so
+                 editing one field cannot post the rest of the section blank */
+              values={{ ...defaultsFor(def.settings), ...((site?.data?.value ?? {}) as Record<string, string>) }}
               toggles={toggles}
               sections={(flags?.data?.value ?? {}) as Record<string, boolean>}
+              textTitle={def.settingsTitle}
+              textHelp={def.settingsHelp}
               toggleTitle={def.toggles.length ? "Sections you can switch off" : "Whether the site links here"}
               toggleHelp={def.toggles.length
                 ? "Switching a section off hides it from visitors. Nothing is deleted — switch it back on and it returns."

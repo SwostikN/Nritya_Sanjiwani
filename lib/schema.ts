@@ -11,6 +11,8 @@
    hides what the database would refuse anyway.
    ============================================================ */
 
+import { HOME_ABOUT } from "./content";
+
 export type FieldType = "text" | "textarea" | "image" | "number" | "boolean" | "select" | "devanagari";
 
 export interface Field {
@@ -21,6 +23,13 @@ export interface Field {
   required?: boolean;
   options?: string[];
   rows?: number;
+  /* settings only: the words the site shows when nobody has saved
+     this yet. The editor is filled with them, so a form can never
+     be saved blank by an admin who came to change something else. */
+  def?: string;
+  /* settings only: required, but only once another field is filled —
+     alt text is required by a picture, not by an empty slot */
+  requiredWith?: string;
 }
 
 export interface CollectionDef {
@@ -235,6 +244,25 @@ export const SETTINGS_FIELDS: Field[] = [
   TA("reflectionNote", "Our Journey — note on what appears", { rows: 3 }),
   TA("partnersLede", "Partner wall — opening paragraph", { rows: 3 }),
   TA("partnersNote", "Partner wall — note", { rows: 3 }),
+
+  /* The "What is Nritya Sanjiwani" block on the landing page — the
+     picture, the words beside it, and where the link goes. `def` is
+     the copy the site shipped with, so the form opens showing what
+     is on screen rather than eight empty boxes. */
+  T("homeAboutEyebrow", "Small label above the heading", { def: HOME_ABOUT.eyebrow }),
+  T("homeAboutTitle",   "Heading",   { def: HOME_ABOUT.title }),
+  TA("homeAboutBody",   "Paragraph", { rows: 4, def: HOME_ABOUT.body }),
+  T("homeAboutCta",     "Link text",
+    { def: HOME_ABOUT.cta, help: "The link under the practice tags. Leave it blank and there is no link." }),
+  { key: "homeAboutGo", label: "Where that link goes", type: "select",
+    options: ["story", "team", "program", "reflection", "gallery", "journal", "partner", "support", "apply"],
+    def: HOME_ABOUT.go },
+  { key: "homeAboutImg", label: "Picture", type: "image", def: HOME_ABOUT.img,
+    help: "Shown beside the words. Remove it and the words run the full width." },
+  T("homeAboutAlt", "Alt text",
+    { def: HOME_ABOUT.alt, requiredWith: "homeAboutImg",
+      help: "Describe the picture for someone who cannot see it. Required whenever there is a picture." }),
+  T("homeAboutCap", "Caption on the picture", { def: HOME_ABOUT.cap }),
 ];
 
 /* Sections an editor can hide without deleting anything —

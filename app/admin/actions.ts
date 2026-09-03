@@ -8,7 +8,7 @@
 import { revalidatePath } from "next/cache";
 import { supabaseServer } from "@/lib/supabase/server";
 import { requireStaff, requireAdmin } from "@/lib/auth";
-import { byKey } from "@/lib/schema";
+import { byKey, SETTINGS_FIELDS } from "@/lib/schema";
 
 function refresh() {
   revalidatePath("/", "layout");   // the public site reads this content
@@ -89,6 +89,17 @@ async function mergeSetting(key: "site" | "sections", patch: Record<string, unkn
 
 export async function saveSettings(values: Record<string, unknown>) {
   await requireAdmin();
+  /* A picture without alt text is the one thing a settings form can
+     get wrong that the reader pays for, so it is refused here as well
+     as starred in the form. Only checked when both fields were posted
+     together — a form that showed neither is not making the claim. */
+  for (const f of SETTINGS_FIELDS) {
+    if (!f.requiredWith || !(f.key in values) || !(f.requiredWith in values)) continue;
+    if (String(values[f.requiredWith] ?? "").trim() && !String(values[f.key] ?? "").trim()) {
+      const other = SETTINGS_FIELDS.find((o) => o.key === f.requiredWith);
+      return { error: `${f.label} is required whenever there is a ${(other?.label ?? "value").toLowerCase()}.` };
+    }
+  }
   return mergeSetting("site", values);
 }
 
