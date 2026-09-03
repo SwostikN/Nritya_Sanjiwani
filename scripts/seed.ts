@@ -46,14 +46,15 @@ async function main() {
   await put("partner_types",  C.PARTNER_TYPES as unknown as Item[]);
   await put("take_part",      C.TAKE_PART as unknown as Item[]);
   await put("chapters",       C.CHAPTERS as unknown as Item[]);
+  await put("team",           C.TEAM as unknown as Item[]);
   await put("program_blocks", C.PROGRAM_BLOCKS as unknown as Item[]);
   await put("journal",        C.JOURNAL as unknown as Item[]);
   await put("interests",      C.INTERESTS.map((label) => ({ label })));
   await put("support_items",  C.SUPPORT_ITEMS.map((label) => ({ label })));
   await put("support_models", C.SUPPORT_MODELS as unknown as Item[]);
 
-  await put("gallery_groups", C.GALLERY.map((g) => ({ title: g.title, deva: g.deva, cols: String(g.cols), consent: !!g.consent })));
-  await put("gallery_items",  C.GALLERY.flatMap((g) => g.items.map((i) => ({ group: g.title, ...i }))));
+  await put("gallery_years",  C.GALLERY.map((g) => ({ year: g.year, deva: g.deva, title: g.title, summary: g.summary, consent: !!g.consent })));
+  await put("gallery_items",  C.GALLERY.flatMap((g) => g.items.map((i) => ({ year: g.year, ...i }))));
 
   await put("partner_groups", C.PARTNERS.groups.map((g) => ({ label: g.label })));
   await put("partners",       C.PARTNERS.groups.flatMap((g) => g.items.map((p) => ({ group: g.label, ...p }))));

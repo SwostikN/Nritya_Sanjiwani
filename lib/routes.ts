@@ -8,6 +8,7 @@
 export const PAGE_PATHS: Record<string, string> = {
   home:       "/",
   story:      "/story",
+  team:       "/team",
   reflection: "/reflection",
   program:    "/program",
   gallery:    "/gallery",
@@ -22,11 +23,25 @@ export const PATH_KEYS: Record<string, string> = Object.fromEntries(
 );
 
 export const pathFor = (key: string) => PAGE_PATHS[key] ?? "/";
-export const keyFor  = (path: string) => PATH_KEYS[path] ?? "404";
+
+/* Our Journey and the Gallery are one page per year — /reflection/2025,
+   /gallery/2025 — so a path may sit one segment under the page it
+   belongs to. Falling back to the parent segment is what keeps the
+   header lit and the title right on a year page. */
+export const keyFor = (path: string) => {
+  if (PATH_KEYS[path]) return PATH_KEYS[path];
+  const parent = path.slice(0, path.lastIndexOf("/"));
+  return PATH_KEYS[parent || "/"] ?? "404";
+};
+
+/* the address of one year of a year-wise page */
+export const yearPath = (key: string, year: string) =>
+  `${pathFor(key)}/${encodeURIComponent(String(year).trim())}`;
 
 /* the page titles from titleFor() in the original */
 export const PAGE_TITLES: Record<string, string> = {
   story:      "Our Story",
+  team:       "Our Team",
   reflection: "Our Journey",
   program:    "The Program",
   gallery:    "Gallery",

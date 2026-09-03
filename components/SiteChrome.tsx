@@ -1,4 +1,4 @@
-import { getContent, visibleNav } from "@/lib/content-db";
+import { getContent, headerNav } from "@/lib/content-db";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import NavRoot from "@/components/NavRoot";
@@ -8,12 +8,13 @@ import NewsletterForm from "@/components/forms/NewsletterForm";
 /* The public site's furniture. Used by the (site) layout and by the
    404, which lives at the app root and so cannot inherit that layout. */
 export default async function SiteChrome({ children }: { children: React.ReactNode }) {
-  const { NAV, sections } = await getContent();
+  const content = await getContent();
+  const { sections } = content;
   return (
     <>
       <NavRoot />
       <Reveal />
-      <Header nav={visibleNav(sections, NAV)} />
+      <Header nav={headerNav(sections, content)} />
       <main id="main">{children}</main>
 
       <section className="news">

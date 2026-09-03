@@ -54,6 +54,12 @@ export const SITE_PAGES: SitePageDef[] = [
     fixed: "The title and the opening paragraph are written into the page itself.",
   },
   {
+    key: "team", label: "Our Team", path: "/team",
+    blurb: "The people behind the initiative.",
+    sections: ["team"], settings: [], toggles: [],
+    fixed: "The title and the opening paragraph are written into the page itself.",
+  },
+  {
     key: "program", label: "The Program", path: "/program",
     blurb: "What the twelve to sixteen weeks actually involve.",
     sections: ["program_blocks"], settings: [], toggles: [],
@@ -62,10 +68,11 @@ export const SITE_PAGES: SitePageDef[] = [
   },
   {
     key: "gallery", label: "Gallery", path: "/gallery",
-    blurb: "Pictures, grouped into sections.",
-    sections: ["gallery_groups", "gallery_items"], settings: [],
+    blurb: "Pictures, one page per year.",
+    sections: ["gallery_years", "gallery_items"], settings: [],
     toggles: [], linkToggle: "nav_gallery",
-    fixed: "Add the sections first — an image has to be filed under one.",
+    fixed: "Add the year first — a picture has to be filed under one. Each year becomes its own " +
+           "page and its own entry in the header menu; /gallery opens the most recent.",
   },
   {
     key: "journal", label: "Journal", path: "/journal",
@@ -75,12 +82,13 @@ export const SITE_PAGES: SitePageDef[] = [
   },
   {
     key: "reflection", label: "Our Journey", path: "/reflection",
-    blurb: "The record of what has already happened, year by year.",
+    blurb: "The record of what has already happened, one page per year.",
     sections: ["reflection_years", "reflection_stats", "reflection_events", "reflection_lessons",
                "partner_groups", "partners"],
     settings: ["reflectionLede", "reflectionNote"],
     toggles: [], linkToggle: "nav_reflection",
-    fixed: "Add a year first — figures, events and lessons are all filed under one.",
+    fixed: "Add the year first — figures, events and lessons are all filed under one. Each year " +
+           "becomes its own page and its own entry in the header menu; /reflection opens the most recent.",
   },
   {
     key: "partner", label: "Partner With Us", path: "/partner",
