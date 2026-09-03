@@ -7,6 +7,22 @@
 
 /* ---------- shapes ---------- */
 export type NavItem = [string, string];
+/* The header is a tree, the footer stays a flat list. A node with
+   children opens a menu instead of navigating; `dynamic` marks the
+   two whose children are years, and so are built from the database
+   at request time rather than written here. */
+/* `href` is finished rather than assembled in the header, because a
+   year's address is content-derived (/reflection/2025) and only
+   content-db knows which years exist. `key` stays for the active check. */
+export interface NavChild { label:string; key:string; href:string; deva?:string;
+                            /* an optional caption above this entry, which also
+                               divides it from what came before */
+                            head?:string }
+export interface NavNode  { label:string; key:string; children?:NavChild[];
+                            dynamic?:"reflectionYears"|"galleryYears";
+                            /* set by headerNav: a lone year links straight through,
+                               and a year-wise page with no years leaves the bar */
+                            href?:string; empty?:boolean }
 export interface SiteInfo { email:string; phone:string; minAge:string; crisis:string; social:Record<string,string> }
 export interface MethodItem   { n:string; deva:string; title:string; img:string; alt:string; body:string }
 export interface StatItem     { f:string; l:string }
@@ -15,8 +31,13 @@ export interface PartnerType  { title:string; body:string; cta:string; go:string
 export interface TakePartItem { role:string; deva:string; body:string; ask:string }
 export interface Chapter      { n:string; title:string; body:string }
 export interface ProgramBlock { tag:string; title:string; body:string }
-export interface GalleryItem  { slot?:boolean; img?:string; cap?:string; alt?:string; r?:string }
-export interface GalleryGroup { title:string; deva:string; cols:number; consent?:boolean; items:GalleryItem[] }
+/* `section` is an optional sub-heading inside a year — the old
+   Movement / People / Process vocabulary, kept but no longer the axis
+   the gallery is organised by. Columns are not stored: the page reads
+   them off the shape of the pictures, so nobody has to keep a number
+   in step with what they uploaded. */
+export interface GalleryItem  { slot?:boolean; img?:string; cap?:string; alt?:string; r?:string; section?:string }
+export interface GalleryYear  { year:string; deva?:string; title?:string; summary?:string; consent?:boolean; items:GalleryItem[] }
 export interface JournalItem  { img:string; alt:string; meta:string; title:string; dek:string }
 export interface SupportModel { title:string; body:string }
 export interface PartnerItem  { name:string; role?:string; logo?:string; url?:string }
@@ -26,6 +47,7 @@ export interface PartnersData { lede:string; note:string; groups:PartnerGroup[] 
    code. They are added in the admin as each participant's signed
    consent arrives, and until then the section shows pending slots. */
 export interface StoryItem    { quote:string; name?:string; role?:string; deva?:string; consent?:boolean }
+export interface TeamMember   { name:string; role?:string; deva?:string; bio?:string; img?:string; alt?:string; slot?:boolean }
 export interface TimelineEvent{ when:string; where?:string; tag?:string; title:string; body:string; img?:string; alt?:string }
 export interface LearnedItem  { n:string; title:string; body:string }
 export interface ReflectionYear{ year:string; deva?:string; title?:string; summary?:string; stats?:StatItem[]; events?:TimelineEvent[]; learned?:LearnedItem[] }
@@ -66,13 +88,33 @@ export const IMG = {
 /* No Contact entry: /partner is the one door for getting in touch —
    it carries the form and the direct details, and the footer repeats
    those on every page. /contact redirects there. */
-export const NAV: NavItem[] = [
-  ["Our Story","story"],["Our Journey","reflection"],["The Program","program"],["Gallery","gallery"],
-  ["Journal","journal"],["Partner","partner"]
+/* The header proper. Six entries were six equal shouts; grouping the
+   two that are really one subject each (who we are, what has already
+   happened) leaves the bar short enough to read at a glance.
+
+   A node with children never navigates on its own — its menu carries
+   the parent page as the first entry instead, so "Gallery → Everything"
+   still reaches /gallery in one move and the label is free to behave
+   like a menu on hover, tap and keyboard alike. */
+export const HEADER_NAV: NavNode[] = [
+  { label:"About Us", key:"story", children:[
+      { label:"Our Story", key:"story", href:"/story", deva:"हाम्रो कथा" },
+      { label:"Our Team",  key:"team",  href:"/team",  deva:"हाम्रो टोली" },
+  ]},
+  /* The programme and the record are one subject read in two directions:
+     what the weeks are for, and what happened the last time we ran them.
+     They sat in the bar as two unrelated words. The years are appended
+     to this list at request time, under their own caption. */
+  { label:"The Journey", key:"reflection", dynamic:"reflectionYears", children:[
+      { label:"The Program", key:"program", href:"/program", deva:"कार्यक्रम" },
+  ]},
+  { label:"Gallery",     key:"gallery",    dynamic:"galleryYears" },
+  { label:"Journal",     key:"journal" },
+  { label:"Partner",     key:"partner" },
 ];
 export const FOOTER_NAV: NavItem[] = [
-  ["Our Story","story"],["Our Journey","reflection"],["The Program","program"],["Gallery","gallery"],["Journal","journal"],
-  ["Partner With Us","partner"],["Support","support"],["Apply","apply"]
+  ["Our Story","story"],["Our Team","team"],["Our Journey","reflection"],["The Program","program"],["Gallery","gallery"],
+  ["Journal","journal"],["Partner With Us","partner"],["Support","support"],["Apply","apply"]
 ];
 export const MARQUEE: NavItem[] = [
   ["Movement","गति"],["Expression","अभिव्यक्ति"],["Connection","जोड"],["Community","समुदाय"],
@@ -118,6 +160,15 @@ export const CHAPTERS: Chapter[] = [
   {n:"04",title:"What We Learned",body:"What the first journey changed about the structure, the pacing, and the role professional counsellors play inside a room where people are moving."},
   {n:"05",title:"Where We Are Going",body:"The 2026–27 community model takes the program into partner communities across the Kathmandu Valley: twelve to sixteen weeks, three phases, and a collaborative performance authored by the participants themselves."}
 ];
+/* Nobody's name and face goes up before they have agreed to it, so the
+   fallback is three pending tiles rather than three invented people —
+   the same promise the People gallery makes. Real members are added in
+   the admin, and each tile fills in as one arrives. */
+export const TEAM: TeamMember[] = [
+  {name:"",role:"Artistic direction",slot:true},
+  {name:"",role:"Counselling",slot:true},
+  {name:"",role:"Community partnerships",slot:true}
+];
 export const PROGRAM_BLOCKS: ProgramBlock[] = [
   {tag:"Overview",title:"What the program is",body:"A twelve-to-sixteen week arts and emotional well-being program delivered inside a partner community, ending in a collaborative performance."},
   {tag:"Community",title:"Who it is for",body:"Adults and young adults from communities with limited access to performing arts and creative well-being experiences. Recruitment runs through partner organisations."},
@@ -130,22 +181,21 @@ export const PROGRAM_BLOCKS: ProgramBlock[] = [
   {tag:"Performance",title:"The final work",body:"A collaborative piece built from the participants' own material. Participation in the performance is invited, never required."},
   {tag:"Measurement",title:"What we measure",body:"Creative confidence · self-expression · body awareness · sense of belonging · access to performing arts · participant agency. We measure the journey, not just the performance."}
 ];
-export const GALLERY: GalleryGroup[] = [
-  {title:"Movement",deva:"गति",cols:3,items:[
-    {img:IMG.ghungroo,cap:"Footwork and ghungroo",alt:"Feet wearing ghungroo bells during tatkar.",r:"r-4x5"},
-    {img:IMG.mudra2,cap:"Hands in mudra",alt:"A dancer's hands held in a classical mudra.",r:"r-4x5"},
-    {img:IMG.turn,cap:"A turn mid-spin",alt:"A dancer captured mid-turn, skirt flaring outward.",r:"r-4x5"}
-  ]},
-  {title:"People",deva:"मानिस",cols:3,consent:true,items:[
-    {slot:true},{slot:true},{slot:true}
-  ]},
-  {title:"Process",deva:"प्रक्रिया",cols:2,items:[
-    {img:IMG.workshop,cap:"Art response session",alt:"People viewing artwork on easels in a community space.",r:"r-3x2"},
-    {img:IMG.community,cap:"In the community",alt:"A cultural dance performed outdoors surrounded by a community audience.",r:"r-3x2"}
-  ]},
-  {title:"Behind the Scenes",deva:"पर्दा पछाडि",cols:2,items:[
-    {img:IMG.musicians,cap:"Live accompaniment",alt:"Musicians with tabla and sarangi accompanying a dancer.",r:"r-3x2"},
-    {img:IMG.spin,cap:"Before a session",alt:"A dancer rehearsing on a stage.",r:"r-3x2"}
+/* One entry per year, and each year is its own page. The section names
+   the pictures used to be filed under survive as sub-headings inside a
+   year — they were a useful vocabulary, they were just never the thing
+   a visitor was looking for. 2025 is where the existing photographs sit
+   until they are re-filed in the admin. */
+export const GALLERY: GalleryYear[] = [
+  {year:"2025",deva:"पहिलो वर्ष",title:"The first year, as it was photographed.",consent:true,items:[
+    {section:"Movement",img:IMG.ghungroo,cap:"Footwork and ghungroo",alt:"Feet wearing ghungroo bells during tatkar.",r:"r-4x5"},
+    {section:"Movement",img:IMG.mudra2,cap:"Hands in mudra",alt:"A dancer's hands held in a classical mudra.",r:"r-4x5"},
+    {section:"Movement",img:IMG.turn,cap:"A turn mid-spin",alt:"A dancer captured mid-turn, skirt flaring outward.",r:"r-4x5"},
+    {section:"People",slot:true},{section:"People",slot:true},{section:"People",slot:true},
+    {section:"Process",img:IMG.workshop,cap:"Art response session",alt:"People viewing artwork on easels in a community space.",r:"r-3x2"},
+    {section:"Process",img:IMG.community,cap:"In the community",alt:"A cultural dance performed outdoors surrounded by a community audience.",r:"r-3x2"},
+    {section:"Behind the Scenes",img:IMG.musicians,cap:"Live accompaniment",alt:"Musicians with tabla and sarangi accompanying a dancer.",r:"r-3x2"},
+    {section:"Behind the Scenes",img:IMG.spin,cap:"Before a session",alt:"A dancer rehearsing on a stage.",r:"r-3x2"}
   ]}
 ];
 export const JOURNAL: JournalItem[] = [
@@ -175,7 +225,7 @@ export const SUPPORT_MODELS: SupportModel[] = [
    OUR JOURNEY — the record of what has already happened.
    Newest year first; add a new object to `years` each year.
 
-   TO FILL IN: replace every "Month 2026", every place name and
+   TO FILL IN: replace every place name and
    every "—" below with what actually happened. The wording of the
    event bodies is scaffolding — it describes what to write, not
    what happened. `learned` is written and can stay as it is.
@@ -189,11 +239,13 @@ export const REFLECTION: ReflectionData = {
        "only where signed consent was given, and are left out everywhere else, deliberately.",
   years:[
     {
-      year:"2026",
-      deva:"पहिलो वर्ष",
-      title:"The year the shape arrived.",
-      summary:"Everything in 2026 was smaller than what is planned for 2026–27: fewer people, "+
-              "borrowed rooms, and a schedule that bent around everyone else’s. It was also the year "+
+      /* the year is the key, the route and the heading, so it stays a bare
+         year; that it ran in December is carried by the dates and the prose */
+      year:"2025",
+      deva:"पहिलो पटक",
+      title:"The month the shape arrived.",
+      summary:"Everything in December 2025 was smaller than what is planned for 2026–27: fewer people, "+
+              "borrowed rooms, and a schedule that bent around everyone else’s. It was also the month "+
               "the three-phase structure stopped being an idea and became something we had watched work.",
       stats:[
         {f:"—",l:"Sessions held"},
@@ -203,25 +255,25 @@ export const REFLECTION: ReflectionData = {
         {f:"—",l:"Shared performances"}
       ],
       events:[
-        {when:"Month 2026", where:"Place, Kathmandu Valley", tag:"First session",
+        {when:"December 2025", where:"Place, Kathmandu Valley", tag:"First session",
          title:"The first open session",
          body:"Who came, what was taught, and how the room felt by the end. The first session is the one "+
               "people always ask about — keep the small detail rather than the headline.",
          img:IMG.ghungroo, alt:"Bare feet with ghungroo bells during tatkar footwork."},
-        {when:"Month 2026", where:"Hosted by a partner organisation", tag:"Workshop",
+        {when:"December 2025", where:"Hosted by a partner organisation", tag:"Workshop",
          title:"A movement and storytelling workshop",
          body:"What the workshop covered, who co-led it, and what participants made or said by the close. "+
               "Note anything that changed the plan afterwards."},
-        {when:"Month 2026", where:"Place", tag:"Community",
+        {when:"December 2025", where:"Place", tag:"Community",
          title:"Weekly sessions inside the community",
          body:"The stretch of weekly sessions — where they ran, how attendance held across the weeks, and "+
               "what having a counsellor in the room made possible.",
          img:IMG.community, alt:"A community gathered around an outdoor cultural performance."},
-        {when:"Month 2026", where:"Place", tag:"Art & story",
+        {when:"December 2025", where:"Place", tag:"Art & story",
          title:"The art and storytelling week",
          body:"What participants drew, wrote or told, and why a second route to expression mattered for "+
               "people who found movement difficult on a given day."},
-        {when:"Month 2026", where:"Venue", tag:"Performance",
+        {when:"December 2025", where:"Venue", tag:"Performance",
          title:"The first shared performance",
          body:"Who performed, what they chose to show, and who came to watch. Say plainly which parts were "+
               "authored by the participants and which were not.",
