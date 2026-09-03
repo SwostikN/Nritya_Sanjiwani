@@ -48,7 +48,7 @@ export default async function Home() {
 
       {/* belief */}
       <section className="sec">
-        <div className="wrap narrow" style={{ textAlign: "center" }}>
+        <div className="wrap narrow narrow--mid" style={{ textAlign: "center" }}>
           <div className="rv"><span className="eyebrow deva" style={{ justifyContent: "center" }}>विश्वास</span></div>
           <h2 className="h2 rv" style={{ ...d(80), margin: ".6em 0 1em" }}>What if everyone had a space to express?</h2>
           <p className="lede rv" style={d(160)}>

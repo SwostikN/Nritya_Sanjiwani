@@ -71,7 +71,18 @@ a{color:inherit;text-decoration:none}
 ::selection{background:var(--accent-soft);color:var(--deep)}
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter)}
-.narrow{max-width:820px}
+/* A narrow column, not a centred one. `.wrap` is a 1360px box centred in
+   the viewport; shrinking that box to 820 and leaving `margin:0 auto` in
+   place centred the column too, which put the heading of every page some
+   270px right of the content beneath it — two left edges on one page.
+   The margin below reproduces exactly what `.wrap` does, so a narrow
+   column starts on the same line as a full-width one at every width.
+   Percentages resolve against the containing block rather than 100vw, so
+   this does not drift by the scrollbar. */
+.narrow{max-width:820px;margin-inline:max(0px,(100% - var(--maxw)) / 2) auto}
+/* the exception: a block whose text is genuinely centred (the closing
+   lines in the dark bands, the 404) still wants the column centred too */
+.narrow--mid{margin-inline:auto}
 
 /* ---------- type scale ---------- */
 h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:400;line-height:1.04;letter-spacing:-.018em;font-variation-settings:'SOFT' 20,'WONK' 1}

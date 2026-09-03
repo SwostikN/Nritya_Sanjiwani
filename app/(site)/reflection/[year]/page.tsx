@@ -124,7 +124,7 @@ export default async function ReflectionYear({ params }: { params: Promise<{ yea
       </section>
 
       <section className="sec sec--deep" style={{ textAlign: "center" }}>
-        <div className="wrap narrow">
+        <div className="wrap narrow narrow--mid">
           <p className="pull rv">We keep the record so the next cohort inherits something.</p>
           <div className="rv" style={{ ...d(200), display: "flex", flexWrap: "wrap", gap: 14, justifyContent: "center", marginTop: "2.6rem" }}>
             <button className="btn btn--light" data-go="program">See the 2026–27 Program</button>

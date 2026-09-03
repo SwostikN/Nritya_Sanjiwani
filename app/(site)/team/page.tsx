@@ -65,7 +65,7 @@ export default async function Team() {
       </section>
 
       <section className="sec sec--deep" style={{ textAlign: "center" }}>
-        <div className="wrap narrow">
+        <div className="wrap narrow narrow--mid">
           <p className="pull rv">The room only works because of who is standing in it.</p>
           <div className="rv" style={{ ...d(200), display: "flex", flexWrap: "wrap", gap: 14, justifyContent: "center", marginTop: "2.6rem" }}>
             <button className="btn btn--light" data-go="story">Read Our Story</button>
