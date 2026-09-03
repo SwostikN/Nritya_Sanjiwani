@@ -125,7 +125,9 @@ export const HEADER_NAV: NavNode[] = [
   ]},
   { label:"Gallery",     key:"gallery",    dynamic:"galleryYears" },
   { label:"Journal",     key:"journal" },
-  { label:"Partner",     key:"partner" },
+  /* No Partner entry: the Join Us button beside this list already goes
+     there, and two labels for one page is one of them wasted. The
+     footer still names it in full for anyone reading the bottom. */
 ];
 export const FOOTER_NAV: NavItem[] = [
   ["Our Story","story"],["Our Team","team"],["Our Journey","reflection"],["The Program","program"],["Gallery","gallery"],
