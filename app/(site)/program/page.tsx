@@ -44,8 +44,12 @@ export default async function Program() {
             involved to support appropriate emotional well-being and guided reflection.
           </div>
           <div className="rv" style={{ display: "flex", flexWrap: "wrap", gap: 14, marginTop: "2.4rem" }}>
-            <button className="btn" data-go="apply">Apply to Participate <span className="arw">→</span></button>
-            <button className="btn btn--ghost" data-go="partner">Partner With Us</button>
+            {/* Applications are not open yet, so the invitation to apply is
+                held back rather than deleted. Put this line back and it
+                returns as the filled button, with Partner beside it in
+                the outline style it had. */}
+            {/* <button className="btn" data-go="apply">Apply to Participate <span className="arw">→</span></button> */}
+            <button className="btn" data-go="partner">Partner With Us</button>
           </div>
         </div>
       </section>
