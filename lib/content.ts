@@ -24,6 +24,12 @@ export interface NavNode  { label:string; key:string; children?:NavChild[];
                                and a year-wise page with no years leaves the bar */
                             href?:string; empty?:boolean }
 export interface SiteInfo { email:string; phone:string; minAge:string; crisis:string; social:Record<string,string> }
+/* The one block of home-page prose that is edited rather than
+   written here: the section beside the picture. Every field is
+   optional at render time — clearing one in the admin removes that
+   line rather than falling back to the words below. */
+export interface HomeAbout  { eyebrow:string; title:string; body:string; cta:string; go:string;
+                              img:string; alt:string; cap:string }
 export interface MethodItem   { n:string; deva:string; title:string; img:string; alt:string; body:string }
 export interface StatItem     { f:string; l:string }
 export interface PhaseItem    { tag:string; title:string; deva:string; img:string; alt:string; body:string }
@@ -121,6 +127,20 @@ export const MARQUEE: NavItem[] = [
   ["Storytelling","कथा"],["Access","पहुँच"],["Agency","सामर्थ्य"],["Culture","संस्कृति"]
 ];
 export const PILLARS = ["Kathak","Somatic movement","Art","Storytelling","Professional counselling","Community"];
+/* the "What is Nritya Sanjiwani" section — the picture, the words
+   beside it, and where its link goes. The practice tags between the
+   paragraph and the link are PILLARS, above. */
+export const HOME_ABOUT: HomeAbout = {
+  eyebrow:"What is Nritya Sanjiwani",
+  title:  "More than a dance class.",
+  body:   "Nritya Sanjiwani is a cultural movement for emotional well-being. It brings six practices "+
+          "into one room, and lets participants decide what to do with them.",
+  cta:    "Our Approach",
+  go:     "story",
+  img:    W+"thumb/7/7a/Kathak_Solo_Performance_%2818%29.jpg/1920px-Kathak_Solo_Performance_%2818%29.jpg",
+  alt:    "A dancer standing with hands joined at the chest, head lowered, in a moment of stillness.",
+  cap:    "Stillness is part of the form"
+};
 export const METHOD: MethodItem[] = [
   {n:"01",deva:"जोड",title:"Connect",img:IMG.ghungroo,alt:"Bare feet with ghungroo ankle bells during tatkar footwork.",
    body:"Movement, rhythm and body awareness. Learning that the body is a place you are allowed to be."},

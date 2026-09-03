@@ -32,6 +32,11 @@ export interface SitePageDef {
      at all — kept apart from `toggles` because it reads as a
      different kind of decision */
   linkToggle?: string;
+  /* what to call this page's own words, when "Text on this page" is
+     vaguer than it needs to be — one page's settings are one named
+     section of it, not a bag of loose fields */
+  settingsTitle?: string;
+  settingsHelp?: string;
   /* what on this page is written into the code rather than the
      database — the honest answer to "why can't I find this bit?" */
   fixed?: string;
@@ -42,9 +47,14 @@ export const SITE_PAGES: SitePageDef[] = [
     key: "home", label: "Landing page", path: "/",
     blurb: "The first page a visitor sees.",
     sections: ["marquee", "pillars", "method", "stats", "phases", "stories", "partner_types", "take_part"],
-    settings: [],
+    settings: ["homeAboutEyebrow", "homeAboutTitle", "homeAboutBody", "homeAboutCta", "homeAboutGo",
+               "homeAboutImg", "homeAboutAlt", "homeAboutCap"],
     toggles: ["home_stories", "home_reflection", "home_partners"],
-    fixed: "The headline, the opening question and the closing invitation are written into the page itself. " +
+    settingsTitle: "The “What is Nritya Sanjiwani” section",
+    settingsHelp: "The picture and the words beside it, a third of the way down the page. The practice " +
+                  "tags between the paragraph and the link are the Practices list above. Leave a field " +
+                  "blank and that line disappears rather than showing empty.",
+    fixed: "The hero headline, the opening question and the closing invitation are written into the page itself. " +
            "The teaser for Our Journey and the partner strip are drawn from those pages — edit them there.",
   },
   {
@@ -144,6 +154,13 @@ export const fieldsFor  = (keys: string[]): Field[] =>
   keys.map(settingByKey).filter((f): f is Field => Boolean(f));
 export const togglesFor = (keys: string[]) =>
   keys.map(toggleByKey).filter((t): t is { key: string; label: string; where: string } => Boolean(t));
+
+/* The values a settings form should open with when the database has
+   never been asked about them. Without this an admin editing one
+   field would post the other seven as blank and quietly empty a
+   section they never looked at. */
+export const defaultsFor = (keys: string[]): Record<string, string> =>
+  Object.fromEntries(fieldsFor(keys).filter((f) => f.def !== undefined).map((f) => [f.key, f.def!]));
 
 /* Used on the site-wide screen to point at the page-level text
    rather than leaving an admin to hunt for it. */
