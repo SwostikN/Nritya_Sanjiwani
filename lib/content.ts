@@ -46,9 +46,18 @@ export interface GalleryItem  { slot?:boolean; img?:string; cap?:string; alt?:st
 export interface GalleryYear  { year:string; deva?:string; title?:string; summary?:string; consent?:boolean; items:GalleryItem[] }
 export interface JournalItem  { img:string; alt:string; meta:string; title:string; dek:string }
 export interface SupportModel { title:string; body:string }
-export interface PartnerItem  { name:string; role?:string; logo?:string; url?:string }
+/* `scale` is a per-cent nudge for one logo. Logo files carry wildly
+   different amounts of their own white space, so a single height cap
+   gives them the same measurement and visibly different weight. It
+   scales the picture only — the cell it sits in never moves. */
+export interface PartnerItem  { name:string; role?:string; logo?:string; url?:string; scale?:number }
 export interface PartnerGroup { label:string; items:PartnerItem[] }
-export interface PartnersData { lede:string; note:string; groups:PartnerGroup[] }
+/* `groups` is the wall, where the headings are visible and grouping is
+   the point. `all` is the same partners in the flat order the admin
+   list shows, for the home strip, which prints no headings — there, a
+   row reshuffled by invisible groups just reads as ignoring the order
+   somebody had just set. */
+export interface PartnersData { lede:string; note:string; groups:PartnerGroup[]; all?:PartnerItem[] }
 /* No fallback list for this one: stories are never written into the
    code. They are added in the admin as each participant's signed
    consent arrives, and until then the section shows pending slots. */

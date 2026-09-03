@@ -99,7 +99,8 @@ export async function getContent(): Promise<SiteContent> {
         label: g.data.label as string,
         items: (rows.partners ?? [])
           .filter((p) => p.data.group === g.data.label)
-          .map((p): PartnerItem => ({ name: p.data.name, role: p.data.role, logo: p.data.logo, url: p.data.url })),
+          .map((p): PartnerItem => ({ name: p.data.name, role: p.data.role, logo: p.data.logo,
+                                     url: p.data.url, scale: Number(p.data.scale) || undefined })),
       }))
     : fallback.PARTNERS.groups;
 
@@ -175,6 +176,10 @@ export async function getContent(): Promise<SiteContent> {
       lede: settings.partnersLede ?? fallback.PARTNERS.lede,
       note: settings.partnersNote ?? fallback.PARTNERS.note,
       groups: partnerGroups,
+      all: live
+        ? (rows.partners ?? []).map((p): PartnerItem => ({ name: p.data.name, role: p.data.role,
+            logo: p.data.logo, url: p.data.url, scale: Number(p.data.scale) || undefined }))
+        : fallback.PARTNERS.groups.flatMap((g) => g.items),
     },
     REFLECTION: {
       lede: settings.reflectionLede ?? fallback.REFLECTION.lede,

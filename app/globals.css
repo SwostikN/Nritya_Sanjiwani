@@ -648,18 +648,27 @@ p:last-child{margin-bottom:0}
 .pgroup__h{display:flex;align-items:center;gap:1em;margin-bottom:1.05rem}
 .pgroup__h b{font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 .pgroup__h i{flex:1;height:1px;background:var(--line)}
-.plogos{display:grid;grid-template-columns:repeat(auto-fill,minmax(184px,1fr));
-  gap:1px;background:var(--line);border:1px solid var(--line)}
+/* The rules used to be the container's own background showing through
+   1px gaps, which only works when the last row happens to be full: a
+   group of three in a row that fits seven left four cells of bare
+   backing colour. Each cell now carries its own hairline instead, so a
+   group of any size ends where its logos end. */
+.plogos{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:1px}
 .plogo{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5em;
-  min-height:114px;padding:1.5rem 1.15rem;text-align:center;background:var(--ground);
+  min-height:152px;padding:1.7rem 1.4rem;text-align:center;background:var(--ground);
+  box-shadow:0 0 0 1px var(--line);overflow:hidden;
   transition:background .45s var(--ease-soft)}
-.plogo img{max-height:46px;width:auto;filter:grayscale(1);opacity:.5;
-  transition:filter .55s var(--ease-soft),opacity .55s var(--ease-soft)}
+/* Every logo gets the same slot, and the slot is what sets the cell's
+   height. A logo is then scaled inside it — a transform, so growing one
+   moves the picture and never the box. Anything a large scale pushes
+   past the cell is clipped, which is the promise a fixed box makes. */
+.plogo__m{display:flex;align-items:center;justify-content:center;width:100%;height:82px}
+.plogo__m img{max-height:100%;max-width:100%;width:auto;object-fit:contain;
+  transform:scale(var(--logo-scale,1))}
 .plogo__n{font-family:var(--display);font-size:1.05rem;line-height:1.22;color:var(--ink);
   transition:color .4s var(--ease-soft)}
 .plogo__r{font-size:.72rem;line-height:1.45;color:var(--muted)}
 .plogo:hover{background:var(--surface)}
-.plogo:hover img{filter:none;opacity:1}
 .plogo:hover .plogo__n{color:var(--accent-2)}
 a.plogo{cursor:pointer}
 .sec--surface .plogo{background:var(--surface)}

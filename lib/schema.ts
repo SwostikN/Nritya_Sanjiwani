@@ -13,7 +13,7 @@
 
 import { HOME_ABOUT } from "./content";
 
-export type FieldType = "text" | "textarea" | "image" | "number" | "boolean" | "select" | "devanagari";
+export type FieldType = "text" | "textarea" | "image" | "number" | "boolean" | "select" | "devanagari" | "zoom";
 
 export interface Field {
   key: string;
@@ -30,6 +30,9 @@ export interface Field {
   /* settings only: required, but only once another field is filled —
      alt text is required by a picture, not by an empty slot */
   requiredWith?: string;
+  /* zoom only: the field holding the picture this one sizes, so the
+     control can show the real thing rather than an abstract number */
+  previewFrom?: string;
 }
 
 export interface CollectionDef {
@@ -187,7 +190,8 @@ export const COLLECTIONS: CollectionDef[] = [
     shownOn: "Partner and Our Journey", titleField: "name", roles: ["admin"],
     groupBy: { collection: "partner_groups", key: "group", label: "Group" },
     fields: [T("name", "Name", { required: true }), T("role", "What they do"),
-             IMG("logo", "Logo"), T("url", "Website", { help: "Optional. Opens in a new tab." })],
+             IMG("logo", "Logo"), T("url", "Website", { help: "Optional. Opens in a new tab." }),
+             { key: "scale", label: "Size inside the box", type: "zoom", previewFrom: "logo" }],
   },
   {
     key: "marquee", label: "Scrolling strip", blurb: "The word pairs in the moving band.",

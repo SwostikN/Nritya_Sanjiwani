@@ -1,9 +1,12 @@
 "use client";
 import type { Field as F } from "@/lib/schema";
 import ImagePicker from "./ImagePicker";
+import LogoZoom from "./LogoZoom";
 
-export default function Field({ f, value, onChange }:
-  { f: F; value: unknown; onChange: (v: unknown) => void }) {
+/* `row` is the rest of the item being edited. Most fields ignore it;
+   the zoom control needs it to find the picture it is sizing. */
+export default function Field({ f, value, onChange, row }:
+  { f: F; value: unknown; onChange: (v: unknown) => void; row?: Record<string, unknown> }) {
   const v = value ?? "";
 
   const label = (
@@ -20,6 +23,15 @@ export default function Field({ f, value, onChange }:
           {f.label}
           {f.help ? <span className="help">{f.help}</span> : null}
         </span>
+      </label>
+    );
+
+  if (f.type === "zoom")
+    return (
+      <label>
+        {label}
+        <LogoZoom value={value} onChange={onChange}
+                  src={f.previewFrom ? String(row?.[f.previewFrom] ?? "") || undefined : undefined} />
       </label>
     );
 
