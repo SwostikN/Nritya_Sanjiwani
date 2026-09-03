@@ -4,7 +4,10 @@ function Plogo({ p }: { p: PartnerItem }) {
   const inner = (
     <>
       {p.logo
-        ? <img loading="lazy" src={p.logo} alt={p.name} />
+        ? <span className="plogo__m"
+                style={p.scale ? ({ "--logo-scale": p.scale / 100 } as React.CSSProperties) : undefined}>
+            <img loading="lazy" src={p.logo} alt={p.name} />
+          </span>
         : <span className="plogo__n">{p.name}</span>}
       {p.role ? <span className="plogo__r">{p.role}</span> : null}
     </>
@@ -39,9 +42,12 @@ export function PartnerWallFull({ partners }: { partners: PartnersData }) {
   );
 }
 
-/* the quiet home strip — every named partner, no group labels */
+/* The quiet home strip — every named partner, no group labels. Because
+   it prints no headings it takes the flat order from the admin list
+   rather than the wall's group order: what somebody arranges there is
+   what appears here, in that order. */
 export function PartnerStrip({ partners }: { partners: PartnersData }) {
-  const all = partners.groups.reduce<PartnerItem[]>((a, g) => a.concat(g.items), []);
+  const all = partners.all ?? partners.groups.reduce<PartnerItem[]>((a, g) => a.concat(g.items), []);
   return all.length
     ? <div className="plogos">{all.map((p, i) => <Plogo key={i} p={p} />)}</div>
     : <Popen text="We are building this list — if your organisation belongs on it," />;

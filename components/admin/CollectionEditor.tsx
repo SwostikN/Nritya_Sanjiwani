@@ -50,21 +50,27 @@ export default function CollectionEditor(
     });
   }
 
-  function drop(targetId: string) {
-    if (!dragId || dragId === targetId) return;
+  /* Top of this list is first on the website, so the order written here
+     is the order a visitor reads. Drag works, but it is easy to miss and
+     awkward on a trackpad, so the same move is on two buttons. */
+  function move(from: number, to: number) {
+    if (to < 0 || to >= items.length || from === to) return;
     const next = [...items];
-    const from = next.findIndex((x) => x.id === dragId);
-    const to = next.findIndex((x) => x.id === targetId);
     next.splice(to, 0, next.splice(from, 1)[0]);
     setItems(next);
-    setDragId(null);
     start(async () => { await reorder(next.map((x) => x.id)); });
+  }
+
+  function drop(targetId: string) {
+    if (!dragId || dragId === targetId) return;
+    setDragId(null);
+    move(items.findIndex((x) => x.id === dragId), items.findIndex((x) => x.id === targetId));
   }
 
   return (
     <>
       <div className="adm__row" style={{ justifyContent: "space-between", marginBottom: 16 }}>
-        <span className="help">{items.length} item{items.length === 1 ? "" : "s"} · drag to reorder</span>
+        <span className="help">{items.length} item{items.length === 1 ? "" : "s"} · the order here is the order on the website — drag, or use the arrows</span>
         <button className="b" onClick={openNew}>Add {def.label.replace(/s$/, "").toLowerCase()}</button>
       </div>
 
@@ -76,7 +82,7 @@ export default function CollectionEditor(
             {editing === "new" ? `New ${def.label.replace(/s$/, "").toLowerCase()}` : "Editing"}
           </h3>
           {fields.map((f) => (
-            <Field key={f.key} f={f as never} value={draft[f.key]}
+            <Field key={f.key} f={f as never} value={draft[f.key]} row={draft}
                    onChange={(v) => setDraft((d) => ({ ...d, [f.key]: v }))} />
           ))}
           <div className="adm__row" style={{ gap: 8, marginTop: 4 }}>
@@ -90,14 +96,22 @@ export default function CollectionEditor(
         <div className="adm__card adm__empty">Nothing here yet. Add the first one.</div>
       ) : null}
 
-      {items.map((r) => (
+      {items.map((r, i) => (
         <div key={r.id}
              className={"adm__item" + (r.published ? "" : " is-hidden")}
              draggable
              onDragStart={() => setDragId(r.id)}
              onDragOver={(e) => e.preventDefault()}
              onDrop={() => drop(r.id)}>
-          <div className="adm__handle" title="Drag to reorder">⠿</div>
+          <div className="adm__ord">
+            <div className="adm__handle" title="Drag to reorder">⠿</div>
+            <div className="adm__move">
+              <button className="b b--ghost b--xs" title="Move up" aria-label={`Move ${String(r.data[def.titleField] ?? "item")} up`}
+                      onClick={() => move(i, i - 1)} disabled={pending || i === 0}>↑</button>
+              <button className="b b--ghost b--xs" title="Move down" aria-label={`Move ${String(r.data[def.titleField] ?? "item")} down`}
+                      onClick={() => move(i, i + 1)} disabled={pending || i === items.length - 1}>↓</button>
+            </div>
+          </div>
           <div className="adm__row" style={{ gap: 12, minWidth: 0 }}>
             {typeof r.data.img === "string" && r.data.img ? <img className="adm__thumb" src={r.data.img} alt="" /> : null}
             {typeof r.data.logo === "string" && r.data.logo ? <img className="adm__thumb" src={r.data.logo} alt="" /> : null}
