@@ -32,7 +32,7 @@ export default async function Home() {
               <button className="btn btn--ghost" data-go="partner">Partner With Us</button>
             </div>
             <div className="hero__meta rv" style={d(560)}>
-              <span>12–16 Weeks</span><i></i><span>Three Phases</span><i></i><span>One Performance</span>
+              {/* <span>12–16 Weeks</span><i></i><span>Three Phases</span><i></i><span>One Performance</span> */}
             </div>
           </div>
           <div className="hero__media rv rv--s" style={d(200)}>
@@ -80,9 +80,11 @@ export default async function Home() {
               Nritya Sanjiwani is a cultural movement for emotional well-being. It brings six practices
               into one room, and lets participants decide what to do with them.
             </p>
-            <div className="pills" id="pills">
-              {PILLARS.map((p) => <span className="pill" key={p}>{p}</span>)}
-            </div>
+            {PILLARS.length > 0 && (
+              <div className="pills" id="pills">
+                {PILLARS.map((p) => <span className="pill" key={p}>{p}</span>)}
+              </div>
+            )}
             <span className="tlink" data-go="story">Our Approach <span className="arw">→</span></span>
           </div>
         </div>
