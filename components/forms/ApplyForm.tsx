@@ -46,7 +46,7 @@ export default function ApplyForm() {
       if (!res.ok) throw new Error(String(res.status));
       setSent(true);
     } catch {
-      setFailed("Something went wrong sending that. Your answers are still here — please try again.");
+      setFailed("Something went wrong sending that. Your answers are still here. Please try again.");
       setBusy(false);
     }
   }
@@ -78,7 +78,7 @@ export default function ApplyForm() {
         <label className="check"><input type="checkbox" name="consentData" />
           <span>I consent to Nritya Sanjiwani storing the details in this form for the purpose of reviewing my application. <b>Required.</b></span></label>
         <label className="check"><input type="checkbox" name="consentMedia" />
-          <span>I consent to photography, video, and publication of my story. Optional — leaving this unticked does not affect my application.</span></label>
+          <span>I consent to photography, video, and publication of my story. Optional. Leaving this unticked does not affect my application.</span></label>
         <span className="err" id="consentErr" style={consentErr ? { opacity: 1 } : undefined}>{consentErr}</span>
       </div>
       <div className="note">

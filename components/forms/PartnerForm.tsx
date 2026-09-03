@@ -29,7 +29,7 @@ export default function PartnerForm({ interests }: { interests: string[] }) {
       setSent(true);
     } catch {
       /* PRD §12 — an error state that does not lose the user's typed input */
-      setFailed("Something went wrong sending that. Your message is still here — please try again.");
+      setFailed("Something went wrong sending that. Your message is still here. Please try again.");
       setBusy(false);
     }
   }

@@ -33,7 +33,7 @@ export default async function Partner() {
             <span className="eyebrow deva">सहकार्य</span>
             <h1 className="h1" style={{ margin: ".4em 0 .5em" }}>Partner With Us</h1>
             <p className="lede">
-              Tell us about your community and what you would want this to look like &mdash;
+              Tell us about your community and what you would want this to look like,
               or ask us anything at all. We reply to every enquiry within five working days.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "1.6rem", marginTop: "2.6rem" }} id="partnerBrief">

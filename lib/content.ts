@@ -168,7 +168,7 @@ export const PHASES: PhaseItem[] = [
   {tag:"Phase 02",title:"Explore & Express",deva:"अभिव्यक्ति",img:IMG.mudra2,alt:"A dancer expressing emotion through hand gesture and gaze.",
    body:"Kathak, somatic movement, art, storytelling and guided emotional reflection come together, with professional counsellor support throughout."},
   {tag:"Phase 03",title:"Create & Share",deva:"सृजन",img:IMG.ensemble2,alt:"An ensemble of dancers performing a collaborative work on stage.",
-   body:"Participants transform their experiences into a collaborative artistic work — authored by them, performed on their terms."}
+   body:"Participants transform their experiences into a collaborative artistic work, authored by them and performed on their terms."}
 ];
 export const PARTNER_TYPES: PartnerType[] = [
   {title:"Community Partners",body:"NGOs, community organisations and institutions who can help us reach communities with limited access to the arts.",cta:"Partner with us",go:"partner"},
@@ -176,7 +176,7 @@ export const PARTNER_TYPES: PartnerType[] = [
   {title:"Funding Partners",body:"Individuals, companies, foundations and CSR programs supporting the delivery and sustainability of the program.",cta:"Support the program",go:"support"}
 ];
 export const TAKE_PART: TakePartItem[] = [
-  {role:"Volunteer",deva:"स्वयंसेवक",body:"Help run sessions on the ground — setup, participant support, and the ordinary work that keeps a week going.",ask:"A few hours, most weeks"},
+  {role:"Volunteer",deva:"स्वयंसेवक",body:"Help run sessions on the ground: setup, participant support, and the ordinary work that keeps a week going.",ask:"A few hours, most weeks"},
   {role:"Facilitate",deva:"सहजकर्ता",body:"Kathak practitioners, somatic movement teachers and artists who can lead or co-lead a session.",ask:"Practice experience"},
   {role:"Counsel",deva:"परामर्श",body:"Qualified counsellors to sit inside sessions and hold the closing reflection.",ask:"Registered practitioner"},
   {role:"Document",deva:"अभिलेख",body:"Photographers, videographers and writers to record the journey with care and consent.",ask:"Portfolio welcome"},
@@ -184,8 +184,8 @@ export const TAKE_PART: TakePartItem[] = [
 ];
 export const CHAPTERS: Chapter[] = [
   {n:"01",title:"The Beginning",body:"Nritya Sanjiwani began with a simple observation: the people who most need a space to express themselves are usually the furthest from one. Studios cost money. Stages ask for training. Between the two, an entire population never gets to find out what movement could do for them."},
-  {n:"02",title:"The Idea",body:"Kathak is a storytelling form before it is a technical one. Every gesture is a sentence, every rhythm a punctuation. If the form is already a language, it can carry things a person is not ready to say out loud — and that is where its use goes far beyond performance."},
-  {n:"03",title:"The First Journey",body:"The account of the first cohort — where it ran, who took part, what was made, and what the participants chose to keep private."},
+  {n:"02",title:"The Idea",body:"Kathak is a storytelling form before it is a technical one. Every gesture is a sentence, every rhythm a punctuation. If the form is already a language, it can carry things a person is not ready to say out loud, and that is where its use goes far beyond performance."},
+  {n:"03",title:"The First Journey",body:"The account of the first cohort: where it ran, who took part, what was made, and what the participants chose to keep private."},
   {n:"04",title:"What We Learned",body:"What the first journey changed about the structure, the pacing, and the role professional counsellors play inside a room where people are moving."},
   {n:"05",title:"Where We Are Going",body:"The 2026–27 community model takes the program into partner communities across the Kathmandu Valley: twelve to sixteen weeks, three phases, and a collaborative performance authored by the participants themselves."}
 ];
@@ -205,7 +205,7 @@ export const PROGRAM_BLOCKS: ProgramBlock[] = [
   {tag:"Structure",title:"Inside a session",body:"Warm-up and breath · Kathak fundamentals · somatic exploration · art or storytelling response · closing circle. Counsellor present throughout."},
   {tag:"Curriculum",title:"What is taught",body:"Tatkar and basic footwork, hasta mudras, abhinaya as emotional expression, rhythm and taal, improvisation, and ensemble composition."},
   {tag:"Counselling",title:"Counsellor integration",body:"A qualified counsellor attends sessions, holds the closing reflection, and is available privately. They are part of the room, not a referral at the end of it."},
-  {tag:"Somatic",title:"Somatic activities",body:"Grounding, breath work, body scanning and paired movement — building the body awareness that makes expressive work possible and safe."},
+  {tag:"Somatic",title:"Somatic activities",body:"Grounding, breath work, body scanning and paired movement, building the body awareness that makes expressive work possible and safe."},
   {tag:"Art",title:"Art & storytelling",body:"Drawing, collage, and spoken or written narrative used as a second route to expression for participants who find movement difficult on a given day."},
   {tag:"Performance",title:"The final work",body:"A collaborative piece built from the participants' own material. Participation in the performance is invited, never required."},
   {tag:"Measurement",title:"What we measure",body:"Creative confidence · self-expression · body awareness · sense of belonging · access to performing arts · participant agency. We measure the journey, not just the performance."}
@@ -243,7 +243,7 @@ export const SUPPORT_ITEMS = ["Professional facilitators","Counsellors","Transpo
   "Venue","Costumes and props","Documentation","Final performance","Participant support"];
 export const SUPPORT_MODELS: SupportModel[] = [
   {title:"Support a Session",body:"Cover the facilitators, counsellor and space for a single week of the program."},
-  {title:"Support a Participant",body:"Carry one person's full journey — transport, materials, and their place in the performance."},
+  {title:"Support a Participant",body:"Carry one person's full journey: transport, materials, and their place in the performance."},
   {title:"Support a Phase",body:"Underwrite one of the three phases from first session to closing circle."},
   {title:"Support the Performance",body:"Fund the venue, production and documentation of the culminating collaborative work."},
   {title:"Become a Program Partner",body:"A longer commitment across cohorts, with involvement in how the program grows."}
@@ -262,7 +262,7 @@ export const SUPPORT_MODELS: SupportModel[] = [
    ============================================================= */
 export const REFLECTION: ReflectionData = {
   lede:"The 2026–27 community program is not a beginning. This is the record of the sessions, "+
-       "workshops and performances that came before it — what we ran, where, and what each one "+
+       "workshops and performances that came before it: what we ran, where, and what each one "+
        "changed about the way we work.",
   note:"Dates, places and partners are listed openly. Participant names, portraits and stories appear "+
        "only where signed consent was given, and are left out everywhere else, deliberately.",
@@ -287,7 +287,7 @@ export const REFLECTION: ReflectionData = {
         {when:"December 2025", where:"Place, Kathmandu Valley", tag:"First session",
          title:"The first open session",
          body:"Who came, what was taught, and how the room felt by the end. The first session is the one "+
-              "people always ask about — keep the small detail rather than the headline.",
+              "people always ask about, so keep the small detail rather than the headline.",
          img:IMG.ghungroo, alt:"Bare feet with ghungroo bells during tatkar footwork."},
         {when:"December 2025", where:"Hosted by a partner organisation", tag:"Workshop",
          title:"A movement and storytelling workshop",
@@ -295,7 +295,7 @@ export const REFLECTION: ReflectionData = {
               "Note anything that changed the plan afterwards."},
         {when:"December 2025", where:"Place", tag:"Community",
          title:"Weekly sessions inside the community",
-         body:"The stretch of weekly sessions — where they ran, how attendance held across the weeks, and "+
+         body:"The stretch of weekly sessions: where they ran, how attendance held across the weeks, and "+
               "what having a counsellor in the room made possible.",
          img:IMG.community, alt:"A community gathered around an outdoor cultural performance."},
         {when:"December 2025", where:"Place", tag:"Art & story",
@@ -312,14 +312,14 @@ export const REFLECTION: ReflectionData = {
         {n:"01", title:"Trust is the first curriculum",
          body:"Nothing expressive happened until people were comfortable simply standing in the room. The "+
               "weeks spent on rhythm and warm-up before anything was asked of anyone were not a slow start "+
-              "— they were the reason the later weeks worked at all."},
+              "They were the reason the later weeks worked at all."},
         {n:"02", title:"The counsellor belongs inside the room",
          body:"A referral at the end of a session is not the same as someone who was present for it. A "+
               "counsellor in the room from the first minute changed what participants were willing to bring, "+
               "and it is now a fixed part of the design rather than a support service attached to it."},
         {n:"03", title:"Participation has to stay invited",
          body:"Wherever performance began to feel compulsory, attendance fell. Everything that faces outward "+
-              "— the stage, the camera, the written story — is now offered and never required, and the "+
+              "from the stage to the camera to the written story, is now offered and never required, and the "+
               "program has to work either way."},
         {n:"04", title:"Consent is a process, not a form",
          body:"People agreed to be photographed and then changed their minds, which is their right. Consent "+

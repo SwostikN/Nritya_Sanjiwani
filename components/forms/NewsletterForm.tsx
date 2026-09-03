@@ -30,7 +30,7 @@ export default function NewsletterForm() {
   }
 
   if (sent)
-    return <p className="lede" style={{ color: "var(--accent-soft)" }}>Thank you — you&rsquo;re on the list.</p>;
+    return <p className="lede" style={{ color: "var(--accent-soft)" }}>Thank you. You&rsquo;re on the list.</p>;
 
   return (
     <form className="news__form" id="newsForm" noValidate onSubmit={onSubmit}>
