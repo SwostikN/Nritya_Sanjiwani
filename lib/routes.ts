@@ -54,5 +54,5 @@ export const PAGE_TITLES: Record<string, string> = {
 
 export const titleFor = (key: string) =>
   key === "home"
-    ? "Nritya Sanjiwani — Healing Through Kathak"
+    ? "Nritya Sanjiwani · Healing Through Kathak"
     : `${PAGE_TITLES[key] ?? key} · Nritya Sanjiwani`;

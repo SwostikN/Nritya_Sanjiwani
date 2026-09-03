@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ year: str
   if (!y) return { title: "Not found · Nritya Sanjiwani" };
   return {
     title: `${y.year} · Our Journey · Nritya Sanjiwani`,
-    description: y.summary?.slice(0, 180) ?? `The record of ${y.year} — the sessions, workshops and performances of the year.`,
+    description: y.summary?.slice(0, 180) ?? `The record of ${y.year}: the sessions, workshops and performances of the year.`,
   };
 }
 

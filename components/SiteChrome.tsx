@@ -22,7 +22,7 @@ export default async function SiteChrome({ children }: { children: React.ReactNo
           <div className="rv">
             <h2 className="h2" style={{ maxWidth: "14ch" }}>Follow the journey.</h2>
             <p className="lede" style={{ marginTop: "1em", maxWidth: "48ch" }}>
-              Occasional notes from the program — no more than one a month, and never a fundraising blast.
+              Occasional notes from the program, no more than one a month and never a fundraising blast.
             </p>
           </div>
           <div className="rv" style={{ "--d": "120ms" } as React.CSSProperties} id="newsWrap">

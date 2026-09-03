@@ -35,7 +35,7 @@ export function PartnerWallFull({ partners }: { partners: PartnersData }) {
           <div className="pgroup__h"><b>{g.label}</b><i></i></div>
           {g.items.length
             ? <div className="plogos">{g.items.map((p, i) => <Plogo key={i} p={p} />)}</div>
-            : <Popen text="This is open — if your organisation belongs here," />}
+            : <Popen text="This is open. If your organisation belongs here," />}
         </div>
       ))}
     </>
@@ -50,5 +50,5 @@ export function PartnerStrip({ partners }: { partners: PartnersData }) {
   const all = partners.all ?? partners.groups.reduce<PartnerItem[]>((a, g) => a.concat(g.items), []);
   return all.length
     ? <div className="plogos">{all.map((p, i) => <Plogo key={i} p={p} />)}</div>
-    : <Popen text="We are building this list — if your organisation belongs on it," />;
+    : <Popen text="We are building this list. If your organisation belongs on it," />;
 }

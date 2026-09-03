@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nritya Sanjiwani — Healing Through Kathak",
+  title: "Nritya Sanjiwani · Healing Through Kathak",
   description:
     "A community-based initiative using Kathak, movement, art and storytelling to create spaces for emotional expression and well-being in the Kathmandu Valley.",
 };

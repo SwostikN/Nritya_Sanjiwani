@@ -4,7 +4,7 @@ import { d } from "@/lib/util";
 
 export const metadata: Metadata = {
   title: "The Program · Nritya Sanjiwani",
-  description: "Twelve to sixteen weeks, three phases, one collaborative performance — delivered inside the community.",
+  description: "Twelve to sixteen weeks, three phases, one collaborative performance, delivered inside the community.",
 };
 
 export default async function Program() {
@@ -16,7 +16,7 @@ export default async function Program() {
           <div className="rv"><span className="eyebrow">2026–27 Community Program</span></div>
           <h1 className="h1 rv" style={{ ...d(80), margin: ".4em 0 .5em" }}>The Program</h1>
           <p className="lede rv" style={d(140)}>
-            Twelve to sixteen weeks, three phases, one collaborative performance — delivered inside the
+            Twelve to sixteen weeks, three phases, one collaborative performance, delivered inside the
             community, not in a studio people have to travel to.
           </p>
         </div>

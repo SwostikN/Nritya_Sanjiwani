@@ -55,7 +55,7 @@ export default async function Home() {
             Many communities have limited access to performing arts and creative well-being experiences.
           </p>
           <p className="lede rv" style={{ ...d(220), marginTop: "1.1em" }}>
-            Nritya Sanjiwani brings these experiences directly into communities — using Kathak, movement,
+            Nritya Sanjiwani brings these experiences directly into communities, using Kathak, movement,
             art and storytelling as pathways for expression, connection, and self-discovery.
           </p>
           <div className="rule rule--gold rv" style={{ ...d(300), margin: "3rem auto 2.4rem", maxWidth: 90 }}></div>
@@ -179,7 +179,7 @@ export default async function Home() {
                 {s.deva ? <div className="card__deva">{s.deva}</div> : null}
                 <p>&ldquo;{s.quote}&rdquo;</p>
                 <div className="card__ask">
-                  {s.name || "Anonymous"}{s.role ? ` — ${s.role}` : ""}
+                  {s.name || "Anonymous"}{s.role ? `, ${s.role}` : ""}
                 </div>
               </article>
             )) : [0, 1, 2].map((i) => (
@@ -227,7 +227,7 @@ export default async function Home() {
             <h2 className="h2 rv" style={d(80)}>Ways to take part</h2>
             <p className="lede rv" style={{ ...d(140), marginTop: "1em" }}>
               The program is carried by people who give time. None of these roles require you to have
-              danced before — only one of them does.
+              danced before. Only one of them does.
             </p>
           </div>
           <div className="grid3" id="takePart">

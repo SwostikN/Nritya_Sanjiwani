@@ -69,7 +69,7 @@ function build(kind: Kind, payload: Record<string, unknown>, siteUrl: string, wi
   const l = LABEL[kind];
   const link = `${siteUrl}${l.where}`;
   const who = String(payload.name ?? payload.email ?? "").trim();
-  const subject = who ? `${l.what}: ${who}` : `${l.what} — Nritya Sanjiwani`;
+  const subject = who ? `${l.what}: ${who}` : `${l.what} · Nritya Sanjiwani`;
 
   if (!withDetails) {
     return {

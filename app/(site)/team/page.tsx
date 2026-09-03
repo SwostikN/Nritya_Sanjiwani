@@ -57,7 +57,7 @@ export default async function Team() {
             <div className="note">
               <b>On who appears here</b>
               Facilitators and counsellors are named with their consent. Participants are never
-              listed on this page — their work is theirs to attribute, on the Gallery and in
+              listed on this page. Their work is theirs to attribute, on the Gallery and in
               performance, and only when they have asked for it.
             </div>
           </div>
