@@ -20,7 +20,7 @@ export default async function Story() {
             could become a space for healing, expression, and connection?</em>
           </p>
           <p className="lede rv" style={{ ...d(200), marginTop: "1.1em" }}>
-            Born from a personal journey of finding strength through Kathak, it began with a{" "}
+            Born from a personal journey of finding strength through Kathak, it began with an{" "}
             <strong>initiative from Aesthetic Dance Studio</strong> and grew into a community
             initiative combining <strong>Kathak, movement, counseling, and storytelling</strong>.
           </p>
@@ -38,7 +38,7 @@ export default async function Story() {
           </p>
           <p className="lede rv" style={{ ...d(380), marginTop: "1.1em" }}>
             <strong>From one dancer’s journey to a shared community movement, this is Nritya
-            Sanjeevani.</strong>
+            Sanjiwani.</strong>
           </p>
         </div>
       </section>
