@@ -134,7 +134,7 @@ export const FOOTER_NAV: NavItem[] = [
   ["Journal","journal"],["Partner With Us","partner"],["Support","support"],["Apply","apply"]
 ];
 export const MARQUEE: NavItem[] = [
-  ["Movement","गति"],["Expression","अभिव्यक्ति"],["Connection","जोड"],["Community","समुदाय"],
+  ["Movement","गति"],["Expression","अभिव्यक्ति"],["Connection","सहभाव"],["Community","समुदाय"],
   ["Storytelling","कथा"],["Access","पहुँच"],["Agency","सामर्थ्य"],["Culture","संस्कृति"]
 ];
 export const PILLARS = ["Kathak","Somatic movement","Art","Storytelling","Professional counselling","Community"];
@@ -153,11 +153,11 @@ export const HOME_ABOUT: HomeAbout = {
   cap:    "Stillness is part of the form"
 };
 export const METHOD: MethodItem[] = [
-  {n:"01",deva:"जोड",title:"Connect",img:IMG.ghungroo,alt:"Bare feet with ghungroo ankle bells during tatkar footwork.",
+  {n:"01",deva:"संयुक्त",title:"Connect",img:IMG.ghungroo,alt:"Bare feet with ghungroo ankle bells during tatkar footwork.",
    body:"Movement, rhythm and body awareness. Learning that the body is a place you are allowed to be."},
-  {n:"02",deva:"खोज",title:"Explore",img:IMG.mudra,alt:"A dancer's hands forming a mudra, face expressive.",
+  {n:"02",deva:"अन्वेषण",title:"Explore",img:IMG.mudra,alt:"A dancer's hands forming a mudra, face expressive.",
    body:"Emotion, story and expression. Finding what wants to be said, without needing the words for it."},
-  {n:"03",deva:"सृजन",title:"Create",img:IMG.ensemble,alt:"A group of dancers performing together in formation.",
+  {n:"03",deva:"सृजना",title:"Create",img:IMG.ensemble,alt:"A group of dancers performing together in formation.",
    body:"Collaboration, art and performance. Turning private experience into something shared."}
 ];
 export const STATS: StatItem[] = [
@@ -165,7 +165,7 @@ export const STATS: StatItem[] = [
   {f:"1",l:"Collaborative performance"},{f:"Feb 2027",l:"Culminating performance"}
 ];
 export const PHASES: PhaseItem[] = [
-  {tag:"Phase 01",title:"Connect",deva:"जोड",img:IMG.ghungroo,alt:"Feet in ghungroo bells mid-footwork.",
+  {tag:"Phase 01",title:"Connect",deva:"संयुक्त",img:IMG.ghungroo,alt:"Feet in ghungroo bells mid-footwork.",
    body:"Participants discover Kathak, rhythm, movement, and body awareness. The first weeks build comfort and trust before anything is asked of anyone."},
   {tag:"Phase 02",title:"Explore & Express",deva:"अभिव्यक्ति",img:IMG.mudra2,alt:"A dancer expressing emotion through hand gesture and gaze.",
    body:"Kathak, somatic movement, art, storytelling and guided emotional reflection come together, with professional counsellor support throughout."},
@@ -182,7 +182,7 @@ export const TAKE_PART: TakePartItem[] = [
   {role:"Facilitate",deva:"सहजकर्ता",body:"Kathak practitioners, somatic movement teachers and artists who can lead or co-lead a session.",ask:"Practice experience"},
   {role:"Counsel",deva:"परामर्श",body:"Qualified counsellors to sit inside sessions and hold the closing reflection.",ask:"Registered practitioner"},
   {role:"Document",deva:"अभिलेख",body:"Photographers, videographers and writers to record the journey with care and consent.",ask:"Portfolio welcome"},
-  {role:"Host a space",deva:"स्थान",body:"A hall, courtyard or room inside a community where a cohort can meet each week.",ask:"Kathmandu Valley"}
+  {role:"Host a space",deva:"अवकाश",body:"A hall, courtyard or room inside a community where a cohort can meet each week.",ask:"Kathmandu Valley"}
 ];
 export const CHAPTERS: Chapter[] = [
   {n:"01",title:"The Beginning",body:"Nritya Sanjiwani began with a simple observation: the people who most need a space to express themselves are usually the furthest from one. Studios cost money. Stages ask for training. Between the two, an entire population never gets to find out what movement could do for them."},
@@ -218,7 +218,7 @@ export const PROGRAM_BLOCKS: ProgramBlock[] = [
    a visitor was looking for. 2025 is where the existing photographs sit
    until they are re-filed in the admin. */
 export const GALLERY: GalleryYear[] = [
-  {year:"2025",deva:"पहिलो वर्ष",title:"The first year, as it was photographed.",consent:true,items:[
+  {year:"2025",deva:"आरम्भ",title:"The first year, as it was photographed.",consent:true,items:[
     {section:"Movement",img:IMG.ghungroo,cap:"Footwork and ghungroo",alt:"Feet wearing ghungroo bells during tatkar.",r:"r-4x5"},
     {section:"Movement",img:IMG.mudra2,cap:"Hands in mudra",alt:"A dancer's hands held in a classical mudra.",r:"r-4x5"},
     {section:"Movement",img:IMG.turn,cap:"A turn mid-spin",alt:"A dancer captured mid-turn, skirt flaring outward.",r:"r-4x5"},

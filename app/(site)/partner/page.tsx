@@ -61,7 +61,7 @@ export default async function Partner() {
       <section className="sec sec--surface">
         <div className="wrap">
           <div className="sec__head">
-            <div className="rv"><span className="eyebrow deva">साथ</span></div>
+            <div className="rv"><span className="eyebrow deva">कृतज्ञता</span></div>
             <h2 className="h2 rv" style={d(80)}>With gratitude</h2>
             <p className="lede rv" style={{ ...d(140), marginTop: ".9em" }} id="partnerWallLede">{PARTNERS.lede}</p>
           </div>

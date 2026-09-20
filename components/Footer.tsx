@@ -44,7 +44,7 @@ export default async function Footer() {
           <div>
             <h4>Please note</h4>
             <p>
-              Nritya Sanjiwani is an arts-based emotional well-being initiative and does not replace
+              Nritya Sanjiwani is an art-based emotional well-being initiative and does not replace
               professional mental-health treatment or clinical therapy. Professional counsellors are
               involved to support appropriate emotional well-being and guided reflection.
             </p>

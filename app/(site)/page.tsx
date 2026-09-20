@@ -49,7 +49,7 @@ export default async function Home() {
       {/* belief */}
       <section className="sec">
         <div className="wrap narrow narrow--mid" style={{ textAlign: "center" }}>
-          <div className="rv"><span className="eyebrow deva" style={{ justifyContent: "center" }}>विश्वास</span></div>
+          <div className="rv"><span className="eyebrow deva" style={{ justifyContent: "center" }}>पहुँच</span></div>
           <h2 className="h2 rv" style={{ ...d(80), margin: ".6em 0 1em" }}>What if everyone had a space to express?</h2>
           <p className="lede rv" style={d(160)}>
             Many communities have limited access to performing arts and creative well-being experiences.
@@ -98,7 +98,7 @@ export default async function Home() {
       <section className="sec">
         <div className="wrap">
           <div className="sec__head" style={{ maxWidth: 640 }}>
-            <div className="rv"><span className="eyebrow deva">गति</span></div>
+            <div className="rv"><span className="eyebrow deva">नृत्यविधि</span></div>
             <h2 className="h2 rv" style={d(80)}>The method moves in three</h2>
           </div>
           <Wave />
@@ -225,10 +225,6 @@ export default async function Home() {
           <div className="sec__head">
             <div className="rv"><span className="eyebrow deva">सहभागी बन्नुहोस्</span></div>
             <h2 className="h2 rv" style={d(80)}>Ways to take part</h2>
-            <p className="lede rv" style={{ ...d(140), marginTop: "1em" }}>
-              The program is carried by people who give time. None of these roles require you to have
-              danced before. Only one of them does.
-            </p>
           </div>
           <div className="grid3" id="takePart">
             {TAKE_PART.map((t, i) => (
@@ -251,10 +247,10 @@ export default async function Home() {
       <section className="sec">
         <div className="wrap">
           <div className="sec__head">
-            <div className="rv"><span className="eyebrow deva">हाम्रो यात्रा</span></div>
-            <h2 className="h2 rv" style={d(80)}>Before this, there was a year.</h2>
+            <div className="rv"><span className="eyebrow deva">स्मृति</span></div>
+            <h2 className="h2 rv" style={d(80)}>2025</h2>
             <p className="lede rv" style={{ ...d(140), marginTop: ".9em" }}>
-              The 2026–27 community program did not begin from nothing. It began in borrowed rooms,
+              The 2025 community program did not begin from nothing. It began in borrowed rooms,
               with a first group of people who showed us what the work actually needed to be.
             </p>
           </div>

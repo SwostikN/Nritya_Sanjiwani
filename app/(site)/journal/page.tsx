@@ -14,7 +14,7 @@ export default async function Journal() {
     <div className="page is-on" data-page="journal">
       <section className="sec sec--tight">
         <div className="wrap narrow">
-          <div className="rv"><span className="eyebrow deva">पत्रिका</span></div>
+          <div className="rv"><span className="eyebrow deva">वृत्तलेख</span></div>
           <h1 className="h1 rv" style={{ ...d(80), margin: ".4em 0 .5em" }}>Journal</h1>
           <p className="lede rv" style={d(140)}>
             Writing on Kathak, access, and what it means to give someone a language for feeling.

@@ -83,7 +83,7 @@ export default function ApplyForm() {
       </div>
       <div className="note">
         <b>Please note</b>
-        Nritya Sanjiwani is an arts-based emotional well-being initiative and does not replace
+        Nritya Sanjiwani is an art-based emotional well-being initiative and does not replace
         professional mental-health treatment or clinical therapy. Professional counsellors are
         involved to support appropriate emotional well-being and guided reflection.
       </div>
