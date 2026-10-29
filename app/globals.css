@@ -743,6 +743,8 @@ a.plogo{cursor:pointer}
 .ft__bot{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
   margin-top:clamp(38px,4.5vw,60px);padding-top:26px;border-top:1px solid rgba(251,246,236,.14);
   font-size:.78rem;color:rgba(251,246,236,.5)}
+.ft__credit{color:inherit;text-decoration:underline;text-underline-offset:3px;transition:color .3s var(--ease-soft)}
+.ft__credit:hover{color:var(--accent-soft)}
 
 /* ---------- page transition ---------- */
 .page{display:none}

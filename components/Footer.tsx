@@ -57,6 +57,10 @@ export default async function Footer() {
         </div>
         <div className="ft__bot">
           <span>© {new Date().getFullYear()} Nritya Sanjiwani. All rights reserved.</span>
+          <span>
+            Website by{" "}
+            <a className="ft__credit" href="https://swostikn.com.np" target="_blank" rel="noopener">Swostik Nepal</a>
+          </span>
           {/* <span>Photography: Wikimedia Commons contributors (CC BY-SA 4.0) — placeholders pending the program&rsquo;s own documentation.</span> */}
         </div>
       </div>
